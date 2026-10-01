@@ -18,6 +18,9 @@ class RunnerTests(unittest.TestCase):
     def test_non_reasoning_settings_preserve_temperature(self):
         settings=request_settings({'reasoning_effort':'none','temperature':0,'max_output_tokens':1100})
         self.assertEqual(settings,{'reasoning':{'effort':'none'},'temperature':0,'max_output_tokens':1100})
+    def test_plan_defaults_do_not_emit_unsupported_overrides(self):
+        settings=request_settings({'reasoning_effort':'none','temperature':None,'max_output_tokens':None})
+        self.assertEqual(settings,{'reasoning':{'effort':'none'}})
     def test_reasoning_settings_omit_unsupported_temperature(self):
         settings=request_settings({'reasoning_effort':'low','temperature':0,'max_output_tokens':3000})
         self.assertNotIn('temperature',settings)

@@ -15,14 +15,15 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--port',type=int,default=8765)
     parser.add_argument('--env-file',type=Path)
+    parser.add_argument('--auth',choices=['api-key','chatgpt'],default='api-key')
     args=parser.parse_args()
     if args.env_file and not args.env_file.is_file():
         parser.error('The specified .env file does not exist.')
     def worker():
-        command=[sys.executable,str(ROOT/'eval'/'runner.py'),'--run']
+        command=[sys.executable,str(ROOT/'eval'/'runner.py'),'--run','--auth',args.auth]
         if args.env_file:command+=['--env-file',str(args.env_file.resolve())]
         try:
-            done=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=300)
+            done=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=1200)
             if done.returncode:
                 error='OpenAI has no credits remaining. Add credits or configure a funded key.' if 'credit_balance_exhausted' in done.stderr else 'The evaluation failed. Check the local terminal and API access.'
                 print(done.stderr[-3000:],flush=True)
@@ -31,7 +32,7 @@ def main():
                 print(done.stdout,flush=True)
                 with LOCK:JOB.update(status='completed',error=None)
         except subprocess.TimeoutExpired:
-            with LOCK:JOB.update(status='failed',error='Evaluation timed out after five minutes. The previous report is retained.')
+            with LOCK:JOB.update(status='failed',error='Evaluation timed out. The previous report is retained.')
         except Exception as error:
             print(type(error).__name__,flush=True)
             with LOCK:JOB.update(status='failed',error='Could not start the local evaluation runner.')

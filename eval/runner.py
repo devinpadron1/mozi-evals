@@ -13,6 +13,8 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
+from threading import Event
+from checkpoint import RunCheckpoint
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -53,12 +55,14 @@ def write_atomic(path, obj):
     temp.replace(path)
 
 def request_settings(config):
-    settings={'max_output_tokens':config['max_output_tokens']}
+    settings={}
+    if config.get('max_output_tokens') is not None:
+        settings['max_output_tokens']=config['max_output_tokens']
     effort=config.get('reasoning_effort')
     if effort is not None:
         settings['reasoning']={'effort':effort}
     # GPT-6 sampling controls are supported only with reasoning disabled.
-    if effort in (None,'none') and 'temperature' in config:
+    if effort in (None,'none') and config.get('temperature') is not None:
         settings['temperature']=config['temperature']
     return settings
 
@@ -108,29 +112,58 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--env-file',type=Path)
     parser.add_argument('--run',action='store_true',help='Generate and grade new model outputs.')
+    parser.add_argument('--auth',choices=['api-key','chatgpt'],default='api-key')
+    parser.add_argument('--model',help='Explicit predictor model, overriding .env defaults.')
+    parser.add_argument('--judge-model',help='Explicit judge model, overriding .env defaults.')
+    parser.add_argument('--resume',action='store_true',help='Reuse saved outputs with matching models, data, prompts and parameters.')
     args=parser.parse_args()
     load_dotenv(args.env_file or ROOT/'.env',override=bool(args.env_file))
     bundle=MANIFEST; prompts=bundle['prompts']; cases=bundle['cases']
     destination=ROOT/'dist'/'report.json'
     if args.run:
-        client=OpenAI(timeout=60,max_retries=1)
-        model=os.getenv('MODEL',bundle['model']['name'])
-        judge=os.getenv('JUDGE_MODEL',bundle['judgement']['model'])
+        model=args.model or os.getenv('MODEL',bundle['model']['name'])
+        judge=args.judge_model or os.getenv('JUDGE_MODEL',bundle['judgement']['model'])
+        if args.auth=='chatgpt':
+            from chatgpt_client import ChatGPTClient
+            print('Using ChatGPT plan. Manage usage: https://chatgpt.com/settings/usage',flush=True)
+            client=ChatGPTClient([model,judge])
+        else:
+            client=OpenAI(timeout=60,max_retries=1)
         report={'schema_version':1,'run_id':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),
                 'created_at':datetime.now(timezone.utc).isoformat(),'model':model,'judge_model':judge,
+                'auth_method':args.auth,
                 'prompt_version':prompts['version'],'dataset_version':bundle['dataset_version'],
                 'prompt_hash':hashlib.sha256(json.dumps(prompts,sort_keys=True).encode()).hexdigest(),
                 'dataset_hash':hashlib.sha256(json.dumps(bundle,sort_keys=True).encode()).hexdigest(),
                 'model_parameters':request_settings(bundle['model']),
                 'judge_parameters':request_settings(bundle['judgement']),
                 'judge_rubric':RUBRIC,'evaluation_engine':'Code validation + OpenAI structured judge','results':[]}
+        checkpoint=RunCheckpoint(ROOT/'.eval-runs',report,resume=args.resume)
+        report['run_id']=checkpoint.data['run_id']
+        report['created_at']=checkpoint.data['created_at']
+        stopped=Event()
         def task(pair):
             case,variant=pair
-            output=predict(client,model,case['inputs'],variant,prompts)
-            result={'case_id':case['id'],'variant':variant,**output}
-            result.update(grade(client,judge,case,output,prompts,variant))
-            print(f'Completed {case["id"]} / {variant} ({output["latency_seconds"]}s)',flush=True)
-            return result
+            if stopped.is_set():
+                raise RuntimeError('No new requests after a run failure.')
+            try:
+                result=checkpoint.get(case['id'],variant)
+                if result and 'scores' in result:
+                    print(f'Resumed {case["id"]} / {variant}',flush=True)
+                    return result
+                if result is None:
+                    output=predict(client,model,case['inputs'],variant,prompts)
+                    result={'case_id':case['id'],'variant':variant,**output}
+                    checkpoint.save(result)
+                if stopped.is_set():
+                    raise RuntimeError('Prediction saved; judging paused after another request failed.')
+                result.update(grade(client,judge,case,result,prompts,variant))
+                checkpoint.save(result)
+                print(f'Completed {case["id"]} / {variant} ({result["latency_seconds"]}s)',flush=True)
+                return result
+            except Exception:
+                stopped.set()
+                raise
         pairs=[(c,v) for c in cases for v in ['baseline','grounded']]
         # Validate model access, parameters and judging on one pair before fan-out.
         first=task(pairs[0])

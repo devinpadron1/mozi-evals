@@ -7,3 +7,7 @@ __pycache__/
 .DS_Store
 .deepeval/
 *.tar.gz
+
+eval/chatgpt/node_modules/
+eval/chatgpt/build/
+.eval-runs/
