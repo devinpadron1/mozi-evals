@@ -16,8 +16,8 @@ def fake_response(source_ids=None,status='completed'):
 
 class RunnerTests(unittest.TestCase):
     def setUp(self):
-        self.prompts=read('prompts.json')
-        self.case=read('cases.json')['cases'][0]
+        self.prompts=read('manifest.json')['prompts']
+        self.case=read('manifest.json')['cases'][0]
         self.client=Mock()
         self.client.responses.parse.return_value=fake_response()
     def test_reference_does_not_enter_either_model_request(self):
