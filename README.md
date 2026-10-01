@@ -1,13 +1,16 @@
 # Eval manifest and results table
 
 The website has two tabs: a readable HTML manifest with source video thumbnails,
-and a table of all case/prompt evaluations. The styling uses Acquisition.com’s
+and a table with one row per case, comparing baseline and grounded outputs
+side by side. The styling uses Acquisition.com’s
 Poppins typography, dark navy, and purple accents.
 
 `dist/manifest.json` is the source of truth for cases, references, prompts,
 framework context, judgment criteria, judge instructions and output schemas.
 The Python runner consumes this manifest. Ten cases × two prompts = twenty evals. The JSON remains the canonical source;
 the interface presents case inputs, references and judgment criteria as HTML.
+Each case has a short display summary; full evidence and rubrics are expandable.
+Display summaries are not passed to either the predictor or the judge.
 
 Run locally:
 

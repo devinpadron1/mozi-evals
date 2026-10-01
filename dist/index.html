@@ -20,14 +20,14 @@
     <section id="panel-manifest" role="tabpanel" aria-labelledby="tab-manifest">
       <div class="heading"><h1>Eval manifest</h1><span id="dataset-meta" class="muted"></span></div>
       <p id="manifest-status" role="status">Loading manifest…</p>
-      <details class="criteria-block" open><summary>Judgment criteria <span>Scores 0–1</span></summary><div id="criteria"></div></details>
+      <section class="criteria-block" aria-labelledby="criteria-heading"><div class="criteria-heading"><h2 id="criteria-heading">Judgment criteria</h2><span>Scores 0–1</span></div><div id="criteria"></div><details class="full-rubric"><summary>Full scoring rubric</summary><div id="rubric"></div></details></section>
       <div id="cases"></div>
       <details class="methodology"><summary>Method & limitations</summary><div id="method"></div></details>
     </section>
     <section id="panel-evaluations" role="tabpanel" aria-labelledby="tab-evaluations" hidden>
       <div class="heading"><h1>Evaluations</h1><button id="run" class="primary" hidden>Run evals</button></div>
       <p id="status" role="status">Loading…</p>
-      <div class="table-scroll" role="region" aria-label="All evaluations" tabindex="0"><table><thead><tr><th scope="col">Case</th><th scope="col">Prompt</th><th scope="col">Expected constraint</th><th scope="col">Actual output</th><th scope="col">Diagnosis</th><th scope="col">Grounding</th><th scope="col">Missing info</th><th scope="col">Label match</th><th scope="col">Latency</th></tr></thead><tbody id="evals"></tbody></table></div>
+      <div class="table-scroll" role="region" aria-label="All evaluations" tabindex="0"><table><thead><tr><th scope="col">Case</th><th scope="col">Expected constraint</th><th scope="col">Baseline</th><th scope="col">Grounded</th></tr></thead><tbody id="evals"></tbody></table></div>
     </section>
   </main>
   <script type="module" src="app.js"></script>

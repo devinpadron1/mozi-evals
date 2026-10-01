@@ -47,6 +47,13 @@
           "demand generation"
         ],
         "caution": "Advertising economics and delivery capacity are not established; a controlled test is more defensible than a promise to scale."
+      },
+      "display_summary": {
+        "signals": [
+          "Growth relies on word of mouth",
+          "Private relationships limit referrals"
+        ],
+        "action": "Test paid ads using an influencer success story."
       }
     },
     {
@@ -94,6 +101,13 @@
           "resource allocation"
         ],
         "caution": "The recommendation reflects the consultation, not proof that media will outperform; business-line economics still need validation."
+      },
+      "display_summary": {
+        "signals": [
+          "Sponsorships growing; subscriptions shrinking",
+          "Revenue fell from $2.6M to $1.4M"
+        ],
+        "action": "Prioritize sponsorships and grow free golf content."
       }
     },
     {
@@ -141,6 +155,13 @@
           "productization"
         ],
         "caution": "Hiring is a plausible contributing constraint. The reference emphasizes changing the front-end offer; a label match alone cannot validate the recommendation."
+      },
+      "display_summary": {
+        "signals": [
+          "Custom builds take about 18 months",
+          "Delivery depends on the founder"
+        ],
+        "action": "Test a paid assessment → small improvement → managed services."
       }
     },
     {
@@ -186,6 +207,13 @@
           "customer success"
         ],
         "caution": "The reported 25% lacks a denominator and time period. Attendance is a hypothesis to validate, not a guaranteed cure."
+      },
+      "display_summary": {
+        "signals": [
+          "25% churn reported; period unspecified",
+          "Retention routines are inconsistent"
+        ],
+        "action": "Make member check-ins and attendance follow-up consistent."
       }
     },
     {
@@ -233,6 +261,13 @@
           "customer fit"
         ],
         "caution": "100 departures divided by 150 signups is not a weekly cohort churn rate. The consultation also discusses billing cadence, but stresses learning activation and retention first."
+      },
+      "display_summary": {
+        "signals": [
+          "150 join / 100 leave each week",
+          "Week-one activation: video 50%, photo 10%"
+        ],
+        "action": "Test group onboarding; segment activation and retention."
       }
     },
     {
@@ -279,6 +314,13 @@
           "post-sale retention"
         ],
         "caution": "The advisor hypothesizes inaccurate expectations; the intake does not establish that salespeople actually promise faster installation. Provider capacity remains relevant."
+      },
+      "display_summary": {
+        "signals": [
+          "120-day installation wait",
+          "40% cancel before installation"
+        ],
+        "action": "Disclose the wait before signing; track cancellations."
       }
     },
     {
@@ -324,6 +366,13 @@
           "unit economics"
         ],
         "caution": "The consultation shifts from pricing to sales after learning the 10% close rate and emailed quotes. Predicted growth multiples are not validated business outcomes."
+      },
+      "display_summary": {
+        "signals": [
+          "About 10% of quotes close",
+          "Quotes are emailed after site visits"
+        ],
+        "action": "Present quotes and request deposits on site; test pricing next."
       }
     },
     {
@@ -372,6 +421,13 @@
           "hiring"
         ],
         "caution": "Compensation depends on talent, role scope and business economics. Illustrative profit-share percentages in the consultation should not be treated as a universal formula."
+      },
+      "display_summary": {
+        "signals": [
+          "Operations repeatedly return to the owner",
+          "Storm-driven demand varies by location"
+        ],
+        "action": "Hire an experienced operator with clear scope and aligned incentives."
       }
     },
     {
@@ -418,6 +474,13 @@
           "sales_conversion"
         ],
         "caution": "The intake also contains an internal sales-offer problem. This reference emphasizes the advisor’s response to the marketing question, not proof that all other constraints disappear."
+      },
+      "display_summary": {
+        "signals": [
+          "Group coaching has the highest margins",
+          "Owner wants ads to explain every offer"
+        ],
+        "action": "Lead ads with one desired outcome; explain other offers later."
       }
     },
     {
@@ -467,6 +530,13 @@
           "monetization"
         ],
         "caution": "Strategic focus is also a defensible label. The consultation’s suggested pricing is a test proposal; no conversion, margin or LTV improvement is established."
+      },
+      "display_summary": {
+        "signals": [
+          "One-off GPTs sell for $497–997",
+          "Bootcamp and annual platform are separate offers"
+        ],
+        "action": "Bootcamp → GPT deliverable → annual platform upsell."
       }
     }
   ],
