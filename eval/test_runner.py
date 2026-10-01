@@ -4,7 +4,7 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import Mock
 from pydantic import ValidationError
-from runner import Brief, Grade, predict, read
+from runner import Brief, Grade, predict, grade, read, request_settings
 
 def fake_response(source_ids=None,status='completed'):
     brief=Brief(constraint='customer_acquisition',diagnosis='Test-only diagnosis',
@@ -15,6 +15,25 @@ def fake_response(source_ids=None,status='completed'):
                            model='test-model',id='test-response')
 
 class RunnerTests(unittest.TestCase):
+    def test_non_reasoning_settings_preserve_temperature(self):
+        settings=request_settings({'reasoning_effort':'none','temperature':0,'max_output_tokens':1100})
+        self.assertEqual(settings,{'reasoning':{'effort':'none'},'temperature':0,'max_output_tokens':1100})
+    def test_reasoning_settings_omit_unsupported_temperature(self):
+        settings=request_settings({'reasoning_effort':'low','temperature':0,'max_output_tokens':3000})
+        self.assertNotIn('temperature',settings)
+        self.assertEqual(settings['reasoning'],{'effort':'low'})
+    def test_judge_request_and_report_use_the_requested_model(self):
+        self.client.responses.parse.return_value=SimpleNamespace(status='completed',
+            output_parsed=Grade(diagnosis_agreement=.5,diagnosis_reason='Test-only',
+                grounded_advice=.8,grounded_reason='Test-only',
+                missing_information=.8,missing_reason='Test-only'),
+            model='gpt-6-sol',id='test-only-response',usage=None)
+        result=grade(self.client,'gpt-6-sol',self.case,{'brief':fake_response().output_parsed.model_dump()},self.prompts,'baseline')
+        request=self.client.responses.parse.call_args.kwargs
+        self.assertEqual(request['model'],'gpt-6-sol')
+        self.assertEqual(request['reasoning'],{'effort':'none'})
+        self.assertEqual(result['resolved_judge_model'],'gpt-6-sol')
+        self.assertEqual(result['scores']['label_match']['score'],1)
     def test_ten_cases_have_unique_sources_and_valid_reference_labels(self):
         manifest=read('manifest.json')
         cases=manifest['cases']

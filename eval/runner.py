@@ -52,16 +52,26 @@ def write_atomic(path, obj):
     temp.write_text(json.dumps(obj, indent=2))
     temp.replace(path)
 
+def request_settings(config):
+    settings={'max_output_tokens':config['max_output_tokens']}
+    effort=config.get('reasoning_effort')
+    if effort is not None:
+        settings['reasoning']={'effort':effort}
+    # GPT-6 sampling controls are supported only with reasoning disabled.
+    if effort in (None,'none') and 'temperature' in config:
+        settings['temperature']=config['temperature']
+    return settings
+
 def predict(client, model, inputs, variant, prompts):
     user_data = {'intake': inputs}
     if variant == 'grounded':
         user_data['framework_notes'] = prompts['framework']
     started = time.perf_counter()
     response = client.responses.parse(
-        model=model, temperature=MANIFEST['model']['temperature'], store=False,
+        model=model, store=False, **request_settings(MANIFEST['model']),
         input=[{'role':'system', 'content':prompts[variant]},
                {'role':'user', 'content':json.dumps(user_data)}],
-        text_format=Brief, max_output_tokens=MANIFEST['model']['max_output_tokens'])
+        text_format=Brief)
     latency = round(time.perf_counter() - started, 3)
     if response.status != 'completed' or response.output_parsed is None:
         raise RuntimeError(f'No completed structured brief: {response.status}')
@@ -79,18 +89,20 @@ def grade(client, model, case, output, prompts, variant):
             'reference':case['reference'],
             'available_sources':prompts['framework'] if variant == 'grounded' else []}
     response = client.responses.parse(
-        model=model, temperature=MANIFEST['judgement']['temperature'], store=False,
+        model=model, store=False, **request_settings(MANIFEST['judgement']),
         input=[{'role':'system','content':RUBRIC},
                {'role':'user','content':json.dumps(data)}],
-        text_format=Grade, max_output_tokens=MANIFEST['judgement']['max_output_tokens'])
+        text_format=Grade)
     if response.status != 'completed' or response.output_parsed is None:
         raise RuntimeError('Judge did not return a completed grade')
     g = response.output_parsed.model_dump()
-    return { 'diagnosis_agreement':{'score':g['diagnosis_agreement'],'reason':g['diagnosis_reason']},
+    scores={ 'diagnosis_agreement':{'score':g['diagnosis_agreement'],'reason':g['diagnosis_reason']},
              'grounded_advice':{'score':g['grounded_advice'],'reason':g['grounded_reason']},
              'missing_information':{'score':g['missing_information'],'reason':g['missing_reason']},
              'label_match':{'score':int(output['brief']['constraint']==case['reference']['constraint']),
                             'reason':'Exact taxonomy label comparison; does not validate the recommended action.'}}
+    return {'scores':scores,'resolved_judge_model':response.model,'judge_response_id':response.id,
+            'judge_usage':response.usage.model_dump() if response.usage else {}}
 
 def main():
     parser=argparse.ArgumentParser()
@@ -109,17 +121,21 @@ def main():
                 'prompt_version':prompts['version'],'dataset_version':bundle['dataset_version'],
                 'prompt_hash':hashlib.sha256(json.dumps(prompts,sort_keys=True).encode()).hexdigest(),
                 'dataset_hash':hashlib.sha256(json.dumps(bundle,sort_keys=True).encode()).hexdigest(),
+                'model_parameters':request_settings(bundle['model']),
+                'judge_parameters':request_settings(bundle['judgement']),
                 'judge_rubric':RUBRIC,'evaluation_engine':'Code validation + OpenAI structured judge','results':[]}
         def task(pair):
             case,variant=pair
             output=predict(client,model,case['inputs'],variant,prompts)
             result={'case_id':case['id'],'variant':variant,**output}
-            result['scores']=grade(client,judge,case,output,prompts,variant)
+            result.update(grade(client,judge,case,output,prompts,variant))
             print(f'Completed {case["id"]} / {variant} ({output["latency_seconds"]}s)',flush=True)
             return result
         pairs=[(c,v) for c in cases for v in ['baseline','grounded']]
+        # Validate model access, parameters and judging on one pair before fan-out.
+        first=task(pairs[0])
         with ThreadPoolExecutor(max_workers=3) as pool:
-            report['results']=list(pool.map(task,pairs))
+            report['results']=[first,*pool.map(task,pairs[1:])]
         # Replace the prior report only after all outputs and grades succeed.
         write_atomic(destination,report)
     elif destination.exists():

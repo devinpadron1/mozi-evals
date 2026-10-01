@@ -7,7 +7,8 @@ Poppins typography, dark navy, and purple accents.
 
 `dist/manifest.json` is the source of truth for cases, references, prompts,
 framework context, judgment criteria, judge instructions and output schemas.
-The Python runner consumes this manifest. Ten cases × two prompts = twenty evals. The JSON remains the canonical source;
+The Python runner consumes this manifest. GPT-6 Luna generates both prompt
+variants; GPT-6 Sol judges them. Both use reasoning effort `none` and temperature 0. Ten cases × two prompts = twenty evals. The JSON remains the canonical source;
 the interface presents case inputs, references and judgment criteria as HTML.
 Each case has a short display summary; full evidence and rubrics are expandable.
 Display summaries are not passed to either the predictor or the judge.
@@ -30,8 +31,9 @@ Open http://127.0.0.1:8765. Configure `OPENAI_API_KEY` in the environment or a l
 A successful run writes `dist/report.json`. The hosted site shows saved results;
 live runs use the local Python server. Keys never reach the browser.
 
-The current configured account has exhausted its API credits. All unrun
-predictions, judgments and latency remain explicitly empty.
+The current configured account has exhausted its API credits; the GPT-6 Luna
+preflight was rejected with `credit_balance_exhausted`. No completed run has been
+saved. All unrun predictions, judgments and latency remain explicitly empty.
 
 References are provisional interpretations of automatic MoreMozi captions,
 with original video links. Reference advice is withheld from model inputs.
