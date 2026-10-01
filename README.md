@@ -39,5 +39,6 @@ Checks:
 
 ```sh
 node --check dist/app.js
+node --test eval/test_data.mjs
 .venv/bin/python -m unittest discover -s eval -p 'test_*.py'
 ```

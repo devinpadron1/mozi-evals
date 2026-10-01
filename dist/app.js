@@ -1,3 +1,4 @@
+import {readJson} from './data.mjs';
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const human=x=>String(x??'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
 const list=items=>`<ul>${(items||[]).map(x=>`<li>${escape(x)}</li>`).join('')}</ul>`;
@@ -36,15 +37,17 @@ function render(){
   runButton.disabled=busy;runButton.textContent=busy?'Running…':'Run evals';
 }
 async function loadReport(){
-  const response=await fetch('report.json?v='+Date.now());if(!response.ok)return;
-  const value=await response.json(),pairs=manifest.cases.flatMap(c=>['baseline','grounded'].map(v=>c.id+':'+v));
+  const response=await fetch('report.json?v='+Date.now());
+  const value=await readJson(response,{optional:true,label:'Saved evaluation report'});
+  if(value===null)return;
+  const pairs=manifest.cases.flatMap(c=>['baseline','grounded'].map(v=>c.id+':'+v));
   if(value.dataset_version!==manifest.dataset_version||value.prompt_version!==manifest.prompts.version||!Array.isArray(value.results)||value.results.length!==pairs.length||new Set(value.results.map(r=>r.case_id+':'+r.variant)).size!==pairs.length||value.results.some(r=>!pairs.includes(r.case_id+':'+r.variant)))throw new Error('Saved report does not match this manifest. Run evaluations again.');
   report=value;
 }
-async function run(){if(busy)return;busy=true;render();try{const response=await fetch('/api/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(!response.ok)throw new Error((await response.json()).error||'Could not start evaluation');while(true){await new Promise(resolve=>setTimeout(resolve,1800));const response=await fetch('/api/status');if(!response.ok)throw new Error('Lost connection to local runner');const job=await response.json();if(job.status==='failed')throw new Error(job.error);if(job.status==='completed')break;}await loadReport();busy=false;render();}catch(e){busy=false;render();status.textContent=e.message;}}
+async function run(){if(busy)return;busy=true;render();try{const response=await fetch('/api/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(!response.ok)throw new Error((await readJson(response,{label:'Evaluation runner'})).error||'Could not start evaluation');while(true){await new Promise(resolve=>setTimeout(resolve,1800));const response=await fetch('/api/status');if(!response.ok)throw new Error('Lost connection to local runner');const job=await readJson(response,{label:'Evaluation status'});if(job.status==='failed')throw new Error(job.error);if(job.status==='completed')break;}await loadReport();if(!report)throw new Error('The evaluation finished without a saved report.');busy=false;render();}catch(e){busy=false;render();status.textContent=e.message;}}
 try{
-  const response=await fetch('manifest.json');if(!response.ok)throw new Error('Could not load manifest.json');manifest=await response.json();renderManifest();
+  const response=await fetch('manifest.json');manifest=await readJson(response,{label:'Evaluation manifest'});renderManifest();
   let reportError;try{await loadReport();}catch(e){reportError=e.message;}
-  if(['localhost','127.0.0.1'].includes(location.hostname)){try{const response=await fetch('/api/health');if(response.ok)localRunner=(await response.json()).runner===true;}catch{}}
+  if(['localhost','127.0.0.1'].includes(location.hostname)){try{const response=await fetch('/api/health');if(response.ok)localRunner=(await readJson(response,{label:'Local runner'})).runner===true;}catch{}}
   runButton.hidden=!localRunner;runButton.onclick=run;render();if(reportError)status.textContent=reportError;
 }catch(e){document.querySelector('#manifest-status').textContent=e.message;status.textContent=e.message;}
