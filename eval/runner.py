@@ -120,7 +120,7 @@ def main():
         pairs=[(c,v) for c in cases for v in ['baseline','grounded']]
         with ThreadPoolExecutor(max_workers=3) as pool:
             report['results']=list(pool.map(task,pairs))
-        # Replace the prior report only after all six outputs and grades succeed.
+        # Replace the prior report only after all outputs and grades succeed.
         write_atomic(destination,report)
     elif destination.exists():
         report=read('report.json')

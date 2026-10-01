@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "business-constraint-evals",
-  "dataset_version": "moremozi-pilot-v1",
+  "dataset_version": "moremozi-pilot-v2-10-cases",
   "reference_status": "Provisional labels derived from automatic captions; independent expert review pending.",
   "cases": [
     {
@@ -14,11 +14,12 @@
         "video_id": "jOM-BzXV39M",
         "title": "Helping a Marketing Agency Scale",
         "url": "https://www.youtube.com/watch?v=jOM-BzXV39M",
-        "input_window": "00:00\u201301:00; owner statements at 01:30\u201303:15",
-        "reference_window": "01:00\u201303:15",
+        "input_window": "00:00–01:00; owner statements at 01:30–03:15",
+        "reference_window": "01:00–03:15",
         "reference_seconds": 60,
         "transcript_source": "Automatic captions via the community ask-hormozi corpus",
-        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/jOM-BzXV39M.md"
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/jOM-BzXV39M.md",
+        "thumbnail_url": "https://i.ytimg.com/vi/jOM-BzXV39M/hqdefault.jpg"
       },
       "inputs": {
         "business": "An agency connects brands and marketing agencies with influencers and also manages influencers.",
@@ -58,11 +59,12 @@
         "video_id": "rFvU8s4xSsY",
         "title": "Helping an Online Service Business Get to $5M/Year",
         "url": "https://www.youtube.com/watch?v=rFvU8s4xSsY",
-        "input_window": "00:00\u201301:30; owner statements at 03:00\u201304:00",
-        "reference_window": "01:30\u201305:15",
+        "input_window": "00:00–01:30; owner statements at 03:00–04:00",
+        "reference_window": "01:30–05:15",
         "reference_seconds": 90,
         "transcript_source": "Automatic captions via the community ask-hormozi corpus",
-        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rFvU8s4xSsY.md"
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rFvU8s4xSsY.md",
+        "thumbnail_url": "https://i.ytimg.com/vi/rFvU8s4xSsY/hqdefault.jpg"
       },
       "inputs": {
         "business": "Two golf coaches run a consumer coaching subscription alongside a sponsorship-funded media business.",
@@ -104,11 +106,12 @@
         "video_id": "0nqLmLYRgK0",
         "title": "I Built a $1.5M Business I Secretly Hate",
         "url": "https://www.youtube.com/watch?v=0nqLmLYRgK0",
-        "input_window": "00:00\u201301:30; owner statements at 02:00\u201303:00",
-        "reference_window": "01:30\u201303:50",
+        "input_window": "00:00–01:30; owner statements at 02:00–03:00",
+        "reference_window": "01:30–03:50",
         "reference_seconds": 180,
         "transcript_source": "Automatic captions via the community ask-hormozi corpus",
-        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0nqLmLYRgK0.md"
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0nqLmLYRgK0.md",
+        "thumbnail_url": "https://i.ytimg.com/vi/0nqLmLYRgK0/hqdefault.jpg"
       },
       "inputs": {
         "business": "A specialist builds custom solutions in customers' own cloud accounts, then sells ongoing managed services.",
@@ -138,6 +141,332 @@
           "productization"
         ],
         "caution": "Hiring is a plausible contributing constraint. The reference emphasizes changing the front-end offer; a label match alone cannot validate the recommendation."
+      }
+    },
+    {
+      "id": "kickboxing",
+      "name": "Women’s kickboxing gym",
+      "sector": "Fitness memberships",
+      "revenue": "$560K revenue",
+      "goal": "$1.2M revenue",
+      "source": {
+        "video_id": "X4T_tITg_zY",
+        "title": "Helping a Kickboxing Gym Cut 25% Churn",
+        "url": "https://www.youtube.com/watch?v=X4T_tITg_zY",
+        "thumbnail_url": "https://i.ytimg.com/vi/X4T_tITg_zY/hqdefault.jpg",
+        "input_window": "00:00–01:30, owner statements",
+        "reference_window": "01:30–04:45",
+        "reference_seconds": 90,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/X4T_tITg_zY.md"
+      },
+      "inputs": {
+        "business": "A recently acquired women-only kickboxing gym sells memberships.",
+        "current_revenue": 560000,
+        "goal_revenue": 1200000,
+        "revenue_period": "Not stated explicitly",
+        "facts": [
+          "The owner acquired the gym about three months ago.",
+          "The owner reports 25% average churn, without specifying the measurement period.",
+          "New-customer acquisition is working, but many inherited members are not receiving full value.",
+          "Existing retention routines are not implemented consistently."
+        ],
+        "unknowns": [
+          "Churn definition and period",
+          "Attendance by membership cohort",
+          "Reasons for cancellation"
+        ]
+      },
+      "reference": {
+        "constraint": "retention",
+        "diagnosis": "Member loss and inconsistent engagement prevent acquisition from translating into durable growth.",
+        "action": "Implement retention routines consistently, including regular member contact, strong sessions and opportunities to attend; track whether membership usage and retention improve.",
+        "acceptable_alternatives": [
+          "member engagement",
+          "customer success"
+        ],
+        "caution": "The reported 25% lacks a denominator and time period. Attendance is a hypothesis to validate, not a guaranteed cure."
+      }
+    },
+    {
+      "id": "real-estate-saas",
+      "name": "AI software for real estate",
+      "sector": "SaaS",
+      "revenue": "$3.3M / year",
+      "goal": "$10M / year",
+      "source": {
+        "video_id": "bxnaIwzAC-M",
+        "title": "Helping a $3.3M SaaS Business Fix 66% Weekly Churn",
+        "url": "https://www.youtube.com/watch?v=bxnaIwzAC-M",
+        "thumbnail_url": "https://i.ytimg.com/vi/bxnaIwzAC-M/hqdefault.jpg",
+        "input_window": "00:00–02:00 and owner statements at 04:30–06:00",
+        "reference_window": "02:00–08:30",
+        "reference_seconds": 180,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/bxnaIwzAC-M.md"
+      },
+      "inputs": {
+        "business": "An AI subscription tool helps real estate agents and photographers create property videos and edit photos.",
+        "annual_revenue": 3300000,
+        "goal_annual_revenue": 10000000,
+        "facts": [
+          "About 150 subscribers join each week and about 100 leave.",
+          "Onboarding is automated, with a recently added checklist and product tours.",
+          "About 50% create a video in their first week; about 10% edit a photo.",
+          "There is no human involvement in onboarding.",
+          "The owner believes some customers have only a few listings per year and may not need monthly use."
+        ],
+        "unknowns": [
+          "Whether activation predicts retention",
+          "Retention by customer type and acquisition channel",
+          "Cohort churn rate and denominator",
+          "Frequency of customer need"
+        ]
+      },
+      "reference": {
+        "constraint": "retention",
+        "diagnosis": "Subscriber losses and weakly understood activation limit durable subscription growth.",
+        "action": "Test hands-on group onboarding, observe friction and guide customers through activation; segment retention and activation by customer type and channel before scaling acquisition.",
+        "acceptable_alternatives": [
+          "onboarding",
+          "activation",
+          "customer fit"
+        ],
+        "caution": "100 departures divided by 150 signups is not a weekly cohort churn rate. The consultation also discusses billing cadence, but stresses learning activation and retention first."
+      }
+    },
+    {
+      "id": "electricity-sales",
+      "name": "Electricity sales agency",
+      "sector": "Energy sales",
+      "revenue": "$300K / month",
+      "goal": "$1M revenue",
+      "source": {
+        "video_id": "wOjKcCodC8w",
+        "title": "Helping a Sales Agency Fix Their Sales Process",
+        "url": "https://www.youtube.com/watch?v=wOjKcCodC8w",
+        "thumbnail_url": "https://i.ytimg.com/vi/wOjKcCodC8w/hqdefault.jpg",
+        "input_window": "00:00–01:15, owner statements",
+        "reference_window": "01:00–01:55",
+        "reference_seconds": 90,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/wOjKcCodC8w.md"
+      },
+      "inputs": {
+        "business": "A sales agency sells electricity plans and backup power that another provider installs.",
+        "monthly_revenue": 300000,
+        "goal_revenue": 1000000,
+        "goal_period": "Not stated explicitly",
+        "facts": [
+          "Third-party installation takes roughly 120 days.",
+          "About 40% of customers cancel before installation.",
+          "Customers already have electricity while waiting.",
+          "Customers primarily switch to save money.",
+          "The owner initially identifies fulfillment as the constraint."
+        ],
+        "unknowns": [
+          "Actual promises made during the sale",
+          "Cancellation reasons",
+          "Provider capacity and installation reliability"
+        ]
+      },
+      "reference": {
+        "constraint": "sales_conversion",
+        "diagnosis": "Sales expectations may be creating cancellations during a long installation delay.",
+        "action": "Audit the sales promise and clearly disclose the roughly four-month wait before signing, while explaining that existing service continues; measure pre-installation cancellations.",
+        "acceptable_alternatives": [
+          "customer expectations",
+          "post-sale retention"
+        ],
+        "caution": "The advisor hypothesizes inaccurate expectations; the intake does not establish that salespeople actually promise faster installation. Provider capacity remains relevant."
+      }
+    },
+    {
+      "id": "concrete",
+      "name": "Residential concrete contractor",
+      "sector": "Home services",
+      "revenue": "$4M / year",
+      "goal": "Fund an operator; free owner time",
+      "source": {
+        "video_id": "f0AY76fE9GI",
+        "title": "Helping a Concrete Business Owner Fix His Margins",
+        "url": "https://www.youtube.com/watch?v=f0AY76fE9GI",
+        "thumbnail_url": "https://i.ytimg.com/vi/f0AY76fE9GI/hqdefault.jpg",
+        "input_window": "00:00–03:00; owner statements at 07:00–07:45 and 10:00–10:45",
+        "reference_window": "07:30–12:45",
+        "reference_seconds": 450,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/f0AY76fE9GI.md"
+      },
+      "inputs": {
+        "business": "A residential concrete contractor’s owner also runs a marketing agency and wants to fund an operator for the contracting business.",
+        "annual_revenue": 4000000,
+        "goal": "Improve profit enough to hire an operator.",
+        "facts": [
+          "The owner reports approximately 50% gross margins but insufficient profit to fund a strong operator.",
+          "Reported quote close rate is about 10%.",
+          "The process is a discovery call, an on-site measurement visit, then an emailed quote.",
+          "Internal estimates use labor costs plus marked-up materials.",
+          "The separate agency has grown to roughly $80,000 monthly revenue and now earns more for the owner."
+        ],
+        "unknowns": [
+          "Margin by job and business line",
+          "Capacity to fulfill additional won jobs",
+          "Reasons for lost quotes"
+        ]
+      },
+      "reference": {
+        "constraint": "sales_conversion",
+        "diagnosis": "A weak quoting and closing process limits profitable jobs and the ability to delegate operations.",
+        "action": "Prioritize the sales process: qualify on the initial call, set expectations for the site visit, and present the quote and request a deposit in person. Test pricing after fixing the sales motion.",
+        "acceptable_alternatives": [
+          "quoting process",
+          "unit economics"
+        ],
+        "caution": "The consultation shifts from pricing to sales after learning the 10% close rate and emailed quotes. Predicted growth multiples are not validated business outcomes."
+      }
+    },
+    {
+      "id": "hail-repair",
+      "name": "Auto hail repair operator",
+      "sector": "Multi-location auto services",
+      "revenue": "$5.5M revenue",
+      "goal": "$15M next year",
+      "source": {
+        "video_id": "20HYrn6opWI",
+        "title": "Helping an Auto Repair Shop Hire Better Talent",
+        "url": "https://www.youtube.com/watch?v=20HYrn6opWI",
+        "thumbnail_url": "https://i.ytimg.com/vi/20HYrn6opWI/hqdefault.jpg",
+        "input_window": "00:00–01:30 and later owner statements about locations",
+        "reference_window": "01:00–03:30; 07:30–10:45",
+        "reference_seconds": 90,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/20HYrn6opWI.md"
+      },
+      "inputs": {
+        "business": "An auto hail repair operator wants to expand while reducing dependence on the owner.",
+        "current_revenue": 5500000,
+        "goal_revenue": 15000000,
+        "goal_horizon": "Next year",
+        "locations": 4,
+        "facts": [
+          "Operational issues repeatedly return to the owner.",
+          "The owner is considering a senior operations hire and initially describes the role as C-suite.",
+          "The owner wants incentives that support performance while preserving control and margins.",
+          "Storm-related demand makes revenue across locations uneven."
+        ],
+        "unknowns": [
+          "Responsibilities and decision rights of the hire",
+          "Profit by location",
+          "Affordable on-target compensation",
+          "Existing manager capability"
+        ]
+      },
+      "reference": {
+        "constraint": "delivery_capacity",
+        "diagnosis": "Founder-dependent operations and a missing effective operating leader constrain expansion.",
+        "action": "Define an experienced operator role at the appropriate GM, director or VP level; target candidates with relevant operating experience and align compensation with responsibility and profitability.",
+        "acceptable_alternatives": [
+          "leadership",
+          "delegation",
+          "hiring"
+        ],
+        "caution": "Compensation depends on talent, role scope and business economics. Illustrative profit-share percentages in the consultation should not be treated as a universal formula."
+      }
+    },
+    {
+      "id": "fitness-offer",
+      "name": "Fitness centers with multiple offers",
+      "sector": "In-person fitness",
+      "revenue": "$2.4M revenue",
+      "goal": "$3M revenue",
+      "source": {
+        "video_id": "SWum9PUPSjE",
+        "title": "Helping an In-Person Service Business Fix Their Offer",
+        "url": "https://www.youtube.com/watch?v=SWum9PUPSjE",
+        "thumbnail_url": "https://i.ytimg.com/vi/SWum9PUPSjE/hqdefault.jpg",
+        "input_window": "00:00–01:30, owner statements",
+        "reference_window": "00:45–01:50",
+        "reference_seconds": 90,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/SWum9PUPSjE.md"
+      },
+      "inputs": {
+        "business": "Four fitness locations offer group coaching, one-on-one services and open-gym access.",
+        "current_revenue": 2400000,
+        "goal_revenue": 3000000,
+        "locations": 4,
+        "facts": [
+          "Group coaching is the highest-margin offering and the focus of paid advertising.",
+          "One-on-one coaching can prepare customers to enter group sessions.",
+          "Open-gym access is intended to keep customers engaged between coached programs.",
+          "Sales staff gravitate toward selling the easier open-gym option.",
+          "The owner wants marketing to explain the entire service ecosystem."
+        ],
+        "unknowns": [
+          "Conversion by advertised offer",
+          "Profit and retention by service",
+          "Sales incentives and offer positioning"
+        ]
+      },
+      "reference": {
+        "constraint": "customer_acquisition",
+        "diagnosis": "An overly complex acquisition message can obscure the outcome prospective customers actually want.",
+        "action": "Advertise a clear desired outcome and explain the broader service journey after the customer enters the business, rather than asking the advertisement to teach the whole ecosystem.",
+        "acceptable_alternatives": [
+          "offer positioning",
+          "sales_conversion"
+        ],
+        "caution": "The intake also contains an internal sales-offer problem. This reference emphasizes the advisor’s response to the marketing question, not proof that all other constraints disappear."
+      }
+    },
+    {
+      "id": "ai-consultant",
+      "name": "AI bootcamp and framework tools",
+      "sector": "AI education / software",
+      "revenue": "$100K revenue",
+      "goal": "$1M in 18 months",
+      "source": {
+        "video_id": "CWK1kQTWagM",
+        "title": "Helping an AI Consultant Scale From $100K to $1M",
+        "url": "https://www.youtube.com/watch?v=CWK1kQTWagM",
+        "thumbnail_url": "https://i.ytimg.com/vi/CWK1kQTWagM/hqdefault.jpg",
+        "input_window": "00:00–01:30, owner statements",
+        "reference_window": "00:30–02:30",
+        "reference_seconds": 90,
+        "transcript_source": "Automatic captions via the community ask-hormozi corpus",
+        "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/CWK1kQTWagM.md"
+      },
+      "inputs": {
+        "business": "An AI consultant sells custom framework-based GPTs, an annual platform and an AI bootcamp.",
+        "current_revenue": 100000,
+        "goal_revenue": 1000000,
+        "revenue_period": "Not stated explicitly",
+        "goal_horizon_months": 18,
+        "facts": [
+          "Standalone branded GPTs sell for approximately $497–$997 once.",
+          "The broader platform costs about $3,800 per year.",
+          "A four-week AI bootcamp costs about $997.",
+          "The consultant offers several products and initially asks about producing more YouTube content.",
+          "The consultant favors the bootcamp and platform offerings."
+        ],
+        "unknowns": [
+          "Conversion between offers",
+          "Contribution margin and fulfillment time",
+          "Customer lifetime value",
+          "Demand for the annual platform"
+        ]
+      },
+      "reference": {
+        "constraint": "unit_economics",
+        "diagnosis": "Fragmented offers and low-value standalone transactions weaken the acquisition-to-recurring-revenue model.",
+        "action": "Build one funnel around the bootcamp, include the standalone GPT as a deliverable, and upsell the annual platform; focus content calls to action on that sequence.",
+        "acceptable_alternatives": [
+          "strategic_focus",
+          "offer design",
+          "monetization"
+        ],
+        "caution": "Strategic focus is also a defensible label. The consultation’s suggested pricing is a test proposal; no conversion, margin or LTV improvement is established."
       }
     }
   ],
@@ -256,21 +585,21 @@
     "framework": [
       {
         "id": "roadmap-marketing",
-        "title": "Scaling Roadmap \u00b7 Marketing",
+        "title": "Scaling Roadmap · Marketing",
         "url": "https://www.acquisition.com/training/advertise",
-        "locator": "Local roadmap extraction, pages 27\u201328",
+        "locator": "Local roadmap extraction, pages 27–28",
         "text": "After the first paying customers, acquisition should become a consistent activity. Track actions and results, test a way to reach unfamiliar customers, and concentrate on a channel that demonstrates results. Customer flow can be uneven; growth should account for product reliability."
       },
       {
         "id": "roadmap-focus",
-        "title": "Scaling Roadmap \u00b7 Prioritize",
+        "title": "Scaling Roadmap · Prioritize",
         "url": "https://www.acquisition.com/training/prioritize",
-        "locator": "Local roadmap extraction, pages 76\u201378",
+        "locator": "Local roadmap extraction, pages 76–78",
         "text": "Serving every possible customer can pull a product in too many directions. Choose the customers the business can serve well, focus the offering around them, and measure basic sales and customer outcomes. Specialization requires deciding what receives attention and what does not."
       },
       {
         "id": "roadmap-retention",
-        "title": "Scaling Roadmap \u00b7 Productize",
+        "title": "Scaling Roadmap · Productize",
         "url": "https://www.acquisition.com/training/productize",
         "locator": "Local roadmap extraction, pages 101 and 110",
         "text": "Revenue per customer, retention, and acquisition economics can constrain growth. Consider an additional premium offering for existing customers when evidence supports it. Adding products is a hypothesis to test against the actual constraint; it is not a universal growth prescription."
@@ -351,7 +680,7 @@
     }
   },
   "limitations": [
-    "Three selected cases, one sample per prompt: workflow demonstration, not a general accuracy estimate.",
+    "Ten selected cases, one sample per prompt: workflow demonstration, not a general accuracy estimate.",
     "References derived from automatic captions and require independent expert review.",
     "Some intake facts come from owner statements later in the consultation.",
     "Reference advice is excluded from model inputs and supplied framework context; pretraining exposure is unknown.",

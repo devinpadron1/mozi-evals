@@ -1,11 +1,13 @@
 # Eval manifest and results table
 
-The website has two sections: the complete JSON evaluation manifest and a table
-of all case/prompt evaluations. No advisor workspace or review workflow.
+The website has two tabs: a readable HTML manifest with source video thumbnails,
+and a table of all case/prompt evaluations. The styling uses Acquisition.com’s
+Poppins typography, dark navy, and purple accents.
 
 `dist/manifest.json` is the source of truth for cases, references, prompts,
 framework context, judgment criteria, judge instructions and output schemas.
-The Python runner consumes this manifest. Three cases × two prompts = six evals.
+The Python runner consumes this manifest. Ten cases × two prompts = twenty evals. The JSON remains the canonical source;
+the interface presents case inputs, references and judgment criteria as HTML.
 
 Run locally:
 
@@ -30,7 +32,7 @@ predictions, judgments and latency remain explicitly empty.
 
 References are provisional interpretations of automatic MoreMozi captions,
 with original video links. Reference advice is withheld from model inputs.
-Three cases and one sample per prompt demonstrate the workflow; they do not
+Ten selected cases and one sample per prompt demonstrate the workflow; they do not
 establish general accuracy. The complete limitations are in the manifest.
 
 Checks:

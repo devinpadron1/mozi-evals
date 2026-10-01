@@ -15,6 +15,23 @@ def fake_response(source_ids=None,status='completed'):
                            model='test-model',id='test-response')
 
 class RunnerTests(unittest.TestCase):
+    def test_ten_cases_have_unique_sources_and_valid_reference_labels(self):
+        manifest=read('manifest.json')
+        cases=manifest['cases']
+        self.assertEqual(len(cases),10)
+        self.assertEqual(len({c['id'] for c in cases}),10)
+        self.assertEqual(len({c['source']['video_id'] for c in cases}),10)
+        for case in cases:
+            with self.subTest(case=case['id']):
+                source=case['source']
+                self.assertRegex(source['video_id'],r'^[A-Za-z0-9_-]{11}$')
+                self.assertEqual(source['thumbnail_url'],f"https://i.ytimg.com/vi/{source['video_id']}/hqdefault.jpg")
+                self.assertIn(source['video_id'],source['url'])
+                self.assertTrue(source['input_window'])
+                self.assertTrue(source['reference_window'])
+                self.assertIn(case['reference']['constraint'],manifest['prompts']['taxonomy'])
+                self.assertTrue(case['reference']['action'])
+                self.assertTrue(case['inputs']['unknowns'])
     def setUp(self):
         self.prompts=read('manifest.json')['prompts']
         self.case=read('manifest.json')['cases'][0]
