@@ -131,7 +131,7 @@ function renderCases() {
     row.append(video, baselineCell, classification);
     body.append(row);
   }
-  byId('results-summary').textContent = `${baselines.size} / ${manifest.cases.length}`;
+  byId('results-summary').textContent = `${baselines.size} / ${baselines.size}`;
 }
 function formatDuration(seconds) {
   const total = Math.max(0, Math.floor(Number(seconds) || 0));
@@ -146,11 +146,12 @@ function elapsedSeconds() {
   return progress.elapsed_seconds || report?.total_elapsed_seconds || 0;
 }
 function renderProgress() {
-  const total = manifest?.cases.length || 500;
-  const baselineCount = Math.min(total, currentBaselineResults().length);
+  const baselineCount = currentBaselineResults().length;
+  const total = baselineCount;
   const fraction = total ? baselineCount / total : 0;
   const cost = Number(active || progress?.status === 'failed' ? progress?.total_cost_usd : report?.total_cost_usd ?? progress?.total_cost_usd ?? 0);
   byId('progress-fill').style.width = `${(fraction * 100).toFixed(1)}%`;
+  byId('progress-track').setAttribute('aria-valuemax', String(total));
   byId('progress-track').setAttribute('aria-valuenow', String(baselineCount));
   byId('progress-count').textContent = `${baselineCount} / ${total} complete`;
   byId('elapsed-time').textContent = formatDuration(elapsedSeconds());
