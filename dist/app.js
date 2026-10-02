@@ -61,6 +61,10 @@ function currentBaselineResults() {
   if (baselineProgress?.status === 'running' || baselineProgress?.status === 'failed') return baselineProgress.results || [];
   return baselineReport?.results || baselineProgress?.results || [];
 }
+function currentPairedResultCount() {
+  const jevIds = new Set(currentResults().map(result => result.case_id));
+  return currentBaselineResults().filter(result => jevIds.has(result.case_id)).length;
+}
 function renderCases() {
   const body = byId('experiment-cases');
   for (const details of body.querySelectorAll('.score-breakdown[open]')) {
@@ -133,7 +137,7 @@ function renderCases() {
     row.append(video, baselineCell, classification);
     body.append(row);
   }
-  byId('results-summary').textContent = `${baselines.size} / ${baselines.size}`;
+  byId('results-summary').textContent = `${currentPairedResultCount()} / ${baselines.size}`;
 }
 function formatDuration(seconds) {
   const total = Math.max(0, Math.floor(Number(seconds) || 0));
@@ -148,14 +152,14 @@ function elapsedSeconds() {
   return progress.elapsed_seconds || report?.total_elapsed_seconds || 0;
 }
 function renderProgress() {
-  const baselineCount = currentBaselineResults().length;
-  const total = baselineCount;
-  const fraction = total ? baselineCount / total : 0;
+  const total = currentBaselineResults().length;
+  const complete = currentPairedResultCount();
+  const fraction = total ? complete / total : 0;
   const cost = Number(active || progress?.status === 'failed' ? progress?.total_cost_usd : report?.total_cost_usd ?? progress?.total_cost_usd ?? 0);
   byId('progress-fill').style.width = `${(fraction * 100).toFixed(1)}%`;
   byId('progress-track').setAttribute('aria-valuemax', String(total));
-  byId('progress-track').setAttribute('aria-valuenow', String(baselineCount));
-  byId('progress-count').textContent = `${baselineCount} / ${total} complete`;
+  byId('progress-track').setAttribute('aria-valuenow', String(complete));
+  byId('progress-count').textContent = `${complete} / ${total} complete`;
   byId('elapsed-time').textContent = formatDuration(elapsedSeconds());
   byId('api-cost').textContent = '$' + (Number.isFinite(cost) ? cost.toFixed(4) : '0.0000');
   const jevByCase = new Map(currentResults().map(result => [result.case_id, result]));
@@ -177,8 +181,7 @@ function render() {
   button.disabled = active || !keyConfigured;
   button.classList.toggle('is-running', active);
   byId('run-jev').querySelector('.run-button-label').textContent = active ? 'Classifying…' : 'Run Jev';
-  const hasRun = Boolean(report || (progress && progress.status !== 'running' && progress.status !== 'idle') ||
-    baselineReport || currentBaselineResults().length);
+  const hasRun = Boolean(report || (progress && progress.status !== 'running' && progress.status !== 'idle'));
   byId('clear-run').disabled = active || !hasRun;
   byId('page-status').textContent = errorMessage || (!localRunner
       ? 'Start the local Python server to run classification.'
@@ -279,8 +282,6 @@ byId('clear-run').onclick = async () => {
     if (!response.ok) throw new Error((await readJson(response, {label: 'Clear run'})).error || 'Could not clear the run.');
     report = null;
     progress = null;
-    baselineReport = null;
-    baselineProgress = null;
     errorMessage = '';
     render();
   } catch (error) {

@@ -134,7 +134,6 @@ def main():
                     try:
                         REPORT.unlink(missing_ok=True)
                         PROGRESS.unlink(missing_ok=True)
-                        BASELINE_PROGRESS.unlink(missing_ok=True)
                     except OSError:
                         return self.send_json({'error': 'Could not clear the saved run files.'}, 500)
                     for job in JOBS.values():
