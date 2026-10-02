@@ -177,7 +177,8 @@ function render() {
   button.disabled = active || !keyConfigured;
   button.classList.toggle('is-running', active);
   byId('run-jev').querySelector('.run-button-label').textContent = active ? 'Classifying…' : 'Run Jev';
-  const hasRun = Boolean(report || (progress && progress.status !== 'running' && progress.status !== 'idle'));
+  const hasRun = Boolean(report || (progress && progress.status !== 'running' && progress.status !== 'idle') ||
+    baselineReport || currentBaselineResults().length);
   byId('clear-run').disabled = active || !hasRun;
   byId('page-status').textContent = errorMessage || (!localRunner
       ? 'Start the local Python server to run classification.'
