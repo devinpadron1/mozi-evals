@@ -7,7 +7,7 @@ from pydantic import ValidationError
 from runner import Brief, Grade, predict, grade, read, request_settings
 
 def fake_response(source_ids=None,status='completed'):
-    brief=Brief(constraint='customer_acquisition',diagnosis='Test-only diagnosis',
+    brief=Brief(constraint='leads',diagnosis='Test-only diagnosis',
                 evidence=['Test-only intake evidence'],next_action='Test-only action',
                 follow_up_question='Test-only question?',missing_information=[],
                 source_ids=source_ids or [])

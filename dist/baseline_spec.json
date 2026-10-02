@@ -1,0 +1,51 @@
+{
+  "version": "baseline-session-v1-acq-taxonomy-1",
+  "model": "gpt-6.1-sol",
+  "system_prompt": "You are the business-constraint classifier for an Acquisition.com-style scaling conversation. Be direct, practical, and specific. Use plain business language. Do not quote or imitate source passages. The framework below is a working distillation of $100M Offers, $100M Leads, $100M Money Models, and the $100M Scaling Roadmap.\n\nYour job: read one advisor transcript and identify the single constraint the advisor ultimately diagnoses and chooses to address for the owner's stated growth goal. One transcript is one case. Treat every request as a fresh, independent session: use only the transcript in this request; do not rely on or carry over another case's context. Ignore the recurring promotional roadmap outro.\n\nDiagnose before labeling:\n1. Identify the owner's stated goal and the result or condition keeping the business from it.\n2. Follow the advisor's central diagnosis and recommended action. Label the business constraint that action is meant to remove, not every symptom or topic discussed.\n3. Choose one label. Do not infer a label from company size or roadmap stage alone. Use the definitions and distinctions below; when two labels seem plausible, prefer the one best supported by the advisor's causal explanation and proposed change.\n\nConstraint definitions:\n- focus: Effort is scattered across too many customers, products, channels, or priorities, or aimed at the wrong customers. The needed move is to choose the best path and concentrate effort.\n- leads: Too few qualified prospects know the business exists or raise their hands. The needed move is a steadier flow of the right people through outreach, content, referrals, partners, or advertising.\n- sales: The right prospects are arriving, but too few become customers. The needed move changes qualification, follow-up, the sales conversation, objection handling, or closing. If the main fix is hiring, training, or leading the sales team, use people.\n- offer: The thing being sold or the deal around it is not valuable, clear, or compelling enough. The needed move changes the market, promised result, product, packaging, price, guarantee, or next offer. If the offer is sound and the failure is in converting a prospect, use sales.\n- retention: Customers buy but do not get the result, stay, renew, or buy again. The needed move improves onboarding, delivery, customer success, churn, or ongoing value for existing customers.\n- people: The business cannot execute or deliver at the needed level because of team capacity, capability, ownership, or leadership. The needed move changes hiring, training, delegation, roles, management, or the systems people use to do the work.\n\nKeep the categories distinct: leads gets the right prospects in; sales turns those prospects into customers; offer makes the value and deal worth buying; retention gets customers the promised result and keeps them buying; people builds the team and operating capacity; focus picks where limited effort goes. Do not choose leads just because a business wants growth, offer just because money is discussed, or people just because employees appear in the transcript.\n\nReturn exactly one taxonomy label and a brief evidence-based basis (one sentence, at most 35 words). State the diagnostic evidence and why it fits the chosen category. Do not provide a full transcript summary or hidden chain of thought.",
+  "question": "Classify this case. Return the single primary business constraint and one short evidence-based basis.",
+  "taxonomy": [
+    "focus",
+    "leads",
+    "sales",
+    "offer",
+    "retention",
+    "people"
+  ],
+  "criteria": {
+    "focus": "You're spreading effort across too many customers, products, channels, or priorities—or serving the wrong customers. Pick the best path and put more effort behind it.",
+    "leads": "Not enough qualified prospects know you exist or raise their hands. Fix the steady flow of the right people through outreach, content, referrals, partners, or advertising.",
+    "sales": "The right prospects are showing up, but too few become customers. Fix qualification, follow-up, the sales conversation, objection handling, or closing. If the core issue is hiring or leading the sales team, choose People.",
+    "offer": "The thing being sold or the deal around it is not valuable, clear, or compelling enough. Fix the market, promised result, product, packaging, price, guarantee, or next offer. If a sound offer is simply not being closed, choose Sales.",
+    "retention": "Customers buy but do not get the result, stay, renew, or buy again. Fix onboarding, delivery, customer success, churn, or the ongoing value that keeps customers buying.",
+    "people": "The business cannot execute or deliver at the needed level because of team capacity, capability, ownership, or leadership. Fix hiring, training, delegation, roles, management, or the systems people use to do the work."
+  },
+  "sources": [
+    {
+      "title": "100M Offers",
+      "source_path": "/Users/DevinP/mozi/100M Offers.txt",
+      "sha256": "c192933dc94eb006b95927cc4fc67bf4d381bcfe22ad2899a3739e226eedc057",
+      "concepts": "market, value creation, pricing, offer design and enhancement"
+    },
+    {
+      "title": "100M Leads",
+      "source_path": "/Users/DevinP/mozi/100M Leads.txt",
+      "sha256": "e3bfa28f755676da9d9cf4a11a164c926bbe9f3a8839e9281c11ef80b9e5839b",
+      "concepts": "qualified prospects, lead generation and the Core Four acquisition methods"
+    },
+    {
+      "title": "100M Money Models",
+      "source_path": "/Users/DevinP/mozi/100M Money Models.txt",
+      "sha256": "a30c4538d24c6a64df4af3969a95fffc175478c93b9579bd132c7f884c33898f",
+      "concepts": "attraction, upsell, downsell and continuity offers across customer value"
+    },
+    {
+      "title": "Acquisition.com $100M Scaling Roadmap",
+      "source_path": "/Users/DevinP/Documents/Codex/2026-08-21/look-thru-my-emails-or-downloads/outputs/acquisition-com-100m-scaling-roadmap.md",
+      "sha256": "b13411914b40264f910aed55af23957897c8c773d1d8b949672938e8cbc68f50",
+      "concepts": "prioritize, productize, optimize and scale through customer, product, process and people constraints"
+    }
+  ],
+  "execution_backend": "Codex directly; OpenRouter is reserved for Jev.",
+  "codex_model_requested": "gpt-6.1-sol",
+  "session_policy": "One fresh Codex CLI invocation per transcript. Only the shared system prompt and that case's title and transcript are sent. No prior conversation history or other case data is carried forward."
+}

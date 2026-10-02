@@ -21,8 +21,7 @@ from openai import OpenAI
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parents[1]
-LABELS = Literal['customer_acquisition', 'sales_conversion', 'delivery_capacity',
-                 'retention', 'unit_economics', 'strategic_focus', 'insufficient_information']
+LABELS = Literal['focus', 'leads', 'sales', 'offer', 'retention', 'people']
 
 class Brief(BaseModel):
     constraint: LABELS
@@ -70,10 +69,12 @@ def predict(client, model, inputs, variant, prompts):
     user_data = {'intake': inputs}
     if variant == 'grounded':
         user_data['framework_notes'] = prompts['framework']
+    label_guide = '\n'.join(f'- {label}: {prompts["taxonomy_definitions"][label]}'
+                            for label in prompts['taxonomy'])
     started = time.perf_counter()
     response = client.responses.parse(
         model=model, store=False, **request_settings(MANIFEST['model']),
-        input=[{'role':'system', 'content':prompts[variant]},
+        input=[{'role':'system', 'content':prompts[variant] + '\nConstraint labels:\n' + label_guide},
                {'role':'user', 'content':json.dumps(user_data)}],
         text_format=Brief)
     latency = round(time.perf_counter() - started, 3)

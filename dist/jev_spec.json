@@ -1,0 +1,16 @@
+{
+  "version": "jev-choice-v2-acq-taxonomy-1",
+  "model": "typesafe/jev-1.13",
+  "question": {
+    "type": "choice",
+    "instructions": "Read this full advisor transcript as one independent case. First identify the owner's stated growth goal. Then follow the advisor's central diagnosis and recommended action: what is stopping that goal, and what change is the advisor trying to make? Choose the single constraint that change would remove. Classify the business problem, not the most repeated word or every issue mentioned. Use the six label definitions below. When issues overlap, prefer the advisor's clearest causal diagnosis and action. Ignore any promotional outro.",
+    "criteria": {
+      "focus": "You're spreading effort across too many customers, products, channels, or priorities\u2014or serving the wrong customers. Pick the best path and put more effort behind it.",
+      "leads": "Not enough qualified prospects know you exist or raise their hands. Fix the steady flow of the right people through outreach, content, referrals, partners, or advertising.",
+      "sales": "The right prospects are showing up, but too few become customers. Fix qualification, follow-up, the sales conversation, objection handling, or closing. If the core issue is hiring or leading the sales team, choose People.",
+      "offer": "The thing being sold or the deal around it is not valuable, clear, or compelling enough. Fix the market, promised result, product, packaging, price, guarantee, or next offer. If a sound offer is simply not being closed, choose Sales.",
+      "retention": "Customers buy but do not get the result, stay, renew, or buy again. Fix onboarding, delivery, customer success, churn, or the ongoing value that keeps customers buying.",
+      "people": "The business cannot execute or deliver at the needed level because of team capacity, capability, ownership, or leadership. Fix hiring, training, delegation, roles, management, or the systems people use to do the work."
+    }
+  }
+}

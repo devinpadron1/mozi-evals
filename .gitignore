@@ -11,3 +11,4 @@ __pycache__/
 eval/chatgpt/node_modules/
 eval/chatgpt/build/
 .eval-runs/
+data/ask-hormozi/

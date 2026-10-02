@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-02T16:02:13.095255+00:00",
+  "dataset_version": "moremozi-pilot-v4-10-cases",
+  "spec_version": "gpt-5.6-luna-choice-v1",
+  "model": "openai/gpt-5.6-luna",
+  "question": {
+    "instructions": "Read the full automatic-caption transcript in `transcript`. Which single business constraint does the advisor ultimately prioritize for the owner's stated growth goal? Use the advisor's central diagnosis and recommended action when several problems are discussed. Ignore the promotional roadmap outro. Choose one of the six criteria below.",
+    "criteria": {
+      "focus": "The main recommendation is to prioritize one customer type, business line, offer, or activity because attention and resources are divided among competing directions.",
+      "leads": "The main problem is getting enough qualified prospects or reaching them consistently. The recommendation changes marketing, advertising, distribution, or the message used to attract prospects.",
+      "sales": "Prospects reach the business, but qualification, follow-up, quoting, closing, or expectations set during the sales process prevent durable sales.",
+      "offer": "The main recommendation changes what is sold or how it is packaged, priced, positioned, or introduced to buyers. The offer itself or buying path needs redesign.",
+      "retention": "Existing customers leave, fail to activate, do not get results, or do not continue using or buying. The recommendation improves onboarding, engagement, service, or renewal.",
+      "people": "The main bottleneck is the team: hiring, delegation, leadership, founder dependence, or capacity to deliver work and support growth."
+    }
+  },
+  "taxonomy": [
+    "focus",
+    "leads",
+    "sales",
+    "offer",
+    "retention",
+    "people"
+  ],
+  "input_kind": "complete automatic-caption Markdown, including advisor resolution",
+  "results": [
+    {
+      "case_id": "agency",
+      "video_id": "jOM-BzXV39M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/jOM-BzXV39M.md",
+      "transcript_sha256": "2422199448df259ccaee7a0ec76cf3202f09cf55714749e31b1c6d04446ef8d0",
+      "transcript_chars": 6217,
+      "reference": "leads",
+      "choice": "leads",
+      "match": true,
+      "latency_seconds": 5.724,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956934-B8ucHWkxgSNVvaoFEB1S",
+      "usage": {
+        "prompt_tokens": 1803,
+        "completion_tokens": 41,
+        "total_tokens": 1844,
+        "cost": 0.0004998,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1800,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004998,
+          "upstream_inference_prompt_cost": 0.0004506,
+          "upstream_inference_completions_cost": 4.92e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 24,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "golf",
+      "video_id": "rFvU8s4xSsY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rFvU8s4xSsY.md",
+      "transcript_sha256": "2326e52c0bc6162ca0416a7d8b78d45c17dccd3aa03b6273b8d0b239f272aaad",
+      "transcript_chars": 8809,
+      "reference": "focus",
+      "choice": "focus",
+      "match": true,
+      "latency_seconds": 7.188,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956940-bDlmt4WnPERl8RcoxEQA",
+      "usage": {
+        "prompt_tokens": 2485,
+        "completion_tokens": 43,
+        "total_tokens": 2528,
+        "cost": 0.0006727,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2482,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0006727,
+          "upstream_inference_prompt_cost": 0.0006211,
+          "upstream_inference_completions_cost": 5.16e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 27,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "cloud",
+      "video_id": "0nqLmLYRgK0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0nqLmLYRgK0.md",
+      "transcript_sha256": "433cc74a493bd117725ac2ff6c0b2cfa550eb59e4c89d08418a1fac81fc81cdf",
+      "transcript_chars": 6140,
+      "reference": "offer",
+      "choice": "offer",
+      "match": true,
+      "latency_seconds": 5.234,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956946-lcfyxtKubaJJzS53Q1Fn",
+      "usage": {
+        "prompt_tokens": 1816,
+        "completion_tokens": 110,
+        "total_tokens": 1926,
+        "cost": 0.00058585,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1813,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00058585,
+          "upstream_inference_prompt_cost": 0.00045385,
+          "upstream_inference_completions_cost": 0.000132
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 94,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "kickboxing",
+      "video_id": "X4T_tITg_zY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/X4T_tITg_zY.md",
+      "transcript_sha256": "912b11ae1068c2200212d3d516444ce422dae84ea5740499510bb0bf10caaff7",
+      "transcript_chars": 6764,
+      "reference": "retention",
+      "choice": "retention",
+      "match": true,
+      "latency_seconds": 1.848,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956951-FJtoMiEKqDboTVg2118A",
+      "usage": {
+        "prompt_tokens": 1933,
+        "completion_tokens": 15,
+        "total_tokens": 1948,
+        "cost": 0.0005011,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1930,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0005011,
+          "upstream_inference_prompt_cost": 0.0004831,
+          "upstream_inference_completions_cost": 1.8e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "real-estate-saas",
+      "video_id": "bxnaIwzAC-M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/bxnaIwzAC-M.md",
+      "transcript_sha256": "893ddae32c13cf47de9223180a18ad7a98d0ea0b53f58393897aa72c1cf0133b",
+      "transcript_chars": 11955,
+      "reference": "retention",
+      "choice": "retention",
+      "match": true,
+      "latency_seconds": 4.105,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956953-2ryoDgt0MsIMeaUbdPv7",
+      "usage": {
+        "prompt_tokens": 3172,
+        "completion_tokens": 33,
+        "total_tokens": 3205,
+        "cost": 0.00083245,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 3169,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00083245,
+          "upstream_inference_prompt_cost": 0.00079285,
+          "upstream_inference_completions_cost": 3.96e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "electricity-sales",
+      "video_id": "wOjKcCodC8w",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/wOjKcCodC8w.md",
+      "transcript_sha256": "1fb0a24502b85cf7c49e3e0f7460a0df1e4863f4ad098f5c2a594206677f373b",
+      "transcript_chars": 3965,
+      "reference": "sales",
+      "choice": "sales",
+      "match": true,
+      "latency_seconds": 4.516,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956958-gt3ksmoYHCgfGsDQz2Ms",
+      "usage": {
+        "prompt_tokens": 1289,
+        "completion_tokens": 84,
+        "total_tokens": 1373,
+        "cost": 0.0004229,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1286,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004229,
+          "upstream_inference_prompt_cost": 0.0003221,
+          "upstream_inference_completions_cost": 0.0001008
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 68,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "concrete",
+      "video_id": "f0AY76fE9GI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/f0AY76fE9GI.md",
+      "transcript_sha256": "2f0fb6c1e7e0eae7997d34b44c6990e2c409ebfe0c3201cc7a321252e4e3212a",
+      "transcript_chars": 18245,
+      "reference": "sales",
+      "choice": "sales",
+      "match": true,
+      "latency_seconds": 5.655,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956963-3DKUzzspTvHrtJjPshmT",
+      "usage": {
+        "prompt_tokens": 4812,
+        "completion_tokens": 54,
+        "total_tokens": 4866,
+        "cost": 0.00126765,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 4809,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00126765,
+          "upstream_inference_prompt_cost": 0.00120285,
+          "upstream_inference_completions_cost": 6.48e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 38,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "hail-repair",
+      "video_id": "20HYrn6opWI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/20HYrn6opWI.md",
+      "transcript_sha256": "122e455e39b65bc3d11778117536e91a01fbcbb15e2c437fcd28eaf0accfae41",
+      "transcript_chars": 14062,
+      "reference": "people",
+      "choice": "people",
+      "match": true,
+      "latency_seconds": 1.247,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956967-vTnpAy7tdjcbFeYrOuFY",
+      "usage": {
+        "prompt_tokens": 3650,
+        "completion_tokens": 14,
+        "total_tokens": 3664,
+        "cost": 0.00092915,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 3647,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00092915,
+          "upstream_inference_prompt_cost": 0.00091235,
+          "upstream_inference_completions_cost": 1.68e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "fitness-offer",
+      "video_id": "SWum9PUPSjE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/SWum9PUPSjE.md",
+      "transcript_sha256": "2b864647f0349e98014317ffa5318267703afd6cda5a765c27fc797e826225a5",
+      "transcript_chars": 5338,
+      "reference": "leads",
+      "choice": "offer",
+      "match": false,
+      "latency_seconds": 2.713,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956968-sDE99LvaGuWVQg1pnAVV",
+      "usage": {
+        "prompt_tokens": 1663,
+        "completion_tokens": 144,
+        "total_tokens": 1807,
+        "cost": 0.0005884,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1660,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0005884,
+          "upstream_inference_prompt_cost": 0.0004156,
+          "upstream_inference_completions_cost": 0.0001728
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 128,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "case_id": "ai-consultant",
+      "video_id": "CWK1kQTWagM",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/CWK1kQTWagM.md",
+      "transcript_sha256": "15121dae6b824187c77330548ce16bf154f8f2fc149e95d3ed18ed6581009885",
+      "transcript_chars": 4761,
+      "reference": "offer",
+      "choice": "focus",
+      "match": false,
+      "latency_seconds": 1.245,
+      "resolved_model": "openai/gpt-5.6-luna",
+      "response_id": "gen-1790956971-rFla3rqM6RPkuUR3IfWj",
+      "usage": {
+        "prompt_tokens": 1549,
+        "completion_tokens": 14,
+        "total_tokens": 1563,
+        "cost": 0.0004039,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1546,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004039,
+          "upstream_inference_prompt_cost": 0.0003871,
+          "upstream_inference_completions_cost": 1.68e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "matches": 8,
+  "total_cost_usd": 0.0067039
+}

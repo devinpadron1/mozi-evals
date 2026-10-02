@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-02T15:09:22.932758+00:00",
+  "dataset_version": "moremozi-pilot-v4-10-cases",
+  "spec_version": "jev-choice-v1",
+  "model": "typesafe/jev-1.13",
+  "question": {
+    "type": "choice",
+    "instructions": "Read the full automatic-caption transcript in `transcript`. Which single business constraint does the advisor ultimately prioritize for the owner's stated growth goal? Use the advisor's central diagnosis and recommended action when several problems are discussed. Ignore the promotional roadmap outro. Choose one of the six criteria below.",
+    "criteria": {
+      "focus": "The main recommendation is to prioritize one customer type, business line, offer, or activity because attention and resources are divided among competing directions.",
+      "leads": "The main problem is getting enough qualified prospects or reaching them consistently. The recommendation changes marketing, advertising, distribution, or the message used to attract prospects.",
+      "sales": "Prospects reach the business, but qualification, follow-up, quoting, closing, or expectations set during the sales process prevent durable sales.",
+      "offer": "The main recommendation changes what is sold or how it is packaged, priced, positioned, or introduced to buyers. The offer itself or buying path needs redesign.",
+      "retention": "Existing customers leave, fail to activate, do not get results, or do not continue using or buying. The recommendation improves onboarding, engagement, service, or renewal.",
+      "people": "The main bottleneck is the team: hiring, delegation, leadership, founder dependence, or capacity to deliver work and support growth."
+    }
+  },
+  "taxonomy": [
+    "focus",
+    "leads",
+    "sales",
+    "offer",
+    "retention",
+    "people"
+  ],
+  "input_kind": "complete automatic-caption Markdown, including advisor resolution",
+  "results": [
+    {
+      "case_id": "agency",
+      "video_id": "jOM-BzXV39M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/jOM-BzXV39M.md",
+      "transcript_sha256": "2422199448df259ccaee7a0ec76cf3202f09cf55714749e31b1c6d04446ef8d0",
+      "transcript_chars": 6217,
+      "reference": "leads",
+      "choice": "leads",
+      "match": true,
+      "probabilities": {
+        "leads": 1,
+        "people": 0,
+        "sales": 0,
+        "offer": 0,
+        "retention": 0,
+        "focus": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.125,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953763-mcxOlgKzaaLBiMSvDomG",
+      "usage": {
+        "input_tokens": 2170,
+        "output_tokens": 64,
+        "cost": 9.114e-05
+      }
+    },
+    {
+      "case_id": "golf",
+      "video_id": "rFvU8s4xSsY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rFvU8s4xSsY.md",
+      "transcript_sha256": "2326e52c0bc6162ca0416a7d8b78d45c17dccd3aa03b6273b8d0b239f272aaad",
+      "transcript_chars": 8809,
+      "reference": "focus",
+      "choice": "focus",
+      "match": true,
+      "probabilities": {
+        "people": 0,
+        "sales": 0,
+        "leads": 0,
+        "retention": 0,
+        "focus": 0.99,
+        "offer": 0.01
+      },
+      "confidence": 0.98,
+      "latency_seconds": 0.633,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953764-p03HQfoRkS65UzdwgqQL",
+      "usage": {
+        "input_tokens": 2894,
+        "output_tokens": 63,
+        "cost": 0.000121548
+      }
+    },
+    {
+      "case_id": "cloud",
+      "video_id": "0nqLmLYRgK0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0nqLmLYRgK0.md",
+      "transcript_sha256": "433cc74a493bd117725ac2ff6c0b2cfa550eb59e4c89d08418a1fac81fc81cdf",
+      "transcript_chars": 6140,
+      "reference": "offer",
+      "choice": "offer",
+      "match": true,
+      "probabilities": {
+        "leads": 0.01,
+        "offer": 0.46,
+        "focus": 0.14,
+        "retention": 0.01,
+        "people": 0.38,
+        "sales": 0
+      },
+      "confidence": 0.36,
+      "latency_seconds": 0.579,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953765-0H9H4Rt3HDSjpkHEceSP",
+      "usage": {
+        "input_tokens": 2173,
+        "output_tokens": 63,
+        "cost": 9.1266e-05
+      }
+    },
+    {
+      "case_id": "kickboxing",
+      "video_id": "X4T_tITg_zY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/X4T_tITg_zY.md",
+      "transcript_sha256": "912b11ae1068c2200212d3d516444ce422dae84ea5740499510bb0bf10caaff7",
+      "transcript_chars": 6764,
+      "reference": "retention",
+      "choice": "retention",
+      "match": true,
+      "probabilities": {
+        "leads": 0,
+        "people": 0,
+        "retention": 1,
+        "sales": 0,
+        "focus": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.429,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953765-pyZt76e33IS02DzbVMjG",
+      "usage": {
+        "input_tokens": 2330,
+        "output_tokens": 65,
+        "cost": 9.786e-05
+      }
+    },
+    {
+      "case_id": "real-estate-saas",
+      "video_id": "bxnaIwzAC-M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/bxnaIwzAC-M.md",
+      "transcript_sha256": "893ddae32c13cf47de9223180a18ad7a98d0ea0b53f58393897aa72c1cf0133b",
+      "transcript_chars": 11955,
+      "reference": "retention",
+      "choice": "retention",
+      "match": true,
+      "probabilities": {
+        "focus": 0,
+        "sales": 0,
+        "leads": 0,
+        "offer": 0,
+        "retention": 1,
+        "people": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.493,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953766-0ousGTBouREd8Di6bq4R",
+      "usage": {
+        "input_tokens": 3674,
+        "output_tokens": 65,
+        "cost": 0.000154308
+      }
+    },
+    {
+      "case_id": "electricity-sales",
+      "video_id": "wOjKcCodC8w",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/wOjKcCodC8w.md",
+      "transcript_sha256": "1fb0a24502b85cf7c49e3e0f7460a0df1e4863f4ad098f5c2a594206677f373b",
+      "transcript_chars": 3965,
+      "reference": "sales",
+      "choice": "sales",
+      "match": true,
+      "probabilities": {
+        "leads": 0,
+        "people": 0.03,
+        "sales": 0.86,
+        "retention": 0.06,
+        "focus": 0,
+        "offer": 0.05
+      },
+      "confidence": 0.82,
+      "latency_seconds": 0.448,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953766-MXqOcuSiK0RXcdXwzUBL",
+      "usage": {
+        "input_tokens": 1623,
+        "output_tokens": 63,
+        "cost": 6.8166e-05
+      }
+    },
+    {
+      "case_id": "concrete",
+      "video_id": "f0AY76fE9GI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/f0AY76fE9GI.md",
+      "transcript_sha256": "2f0fb6c1e7e0eae7997d34b44c6990e2c409ebfe0c3201cc7a321252e4e3212a",
+      "transcript_chars": 18245,
+      "reference": "sales",
+      "choice": "sales",
+      "match": true,
+      "probabilities": {
+        "offer": 0,
+        "focus": 0,
+        "leads": 0,
+        "sales": 1,
+        "people": 0,
+        "retention": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.452,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953767-a0p0lbDhZo2PcSWywyfa",
+      "usage": {
+        "input_tokens": 5379,
+        "output_tokens": 63,
+        "cost": 0.000225918
+      }
+    },
+    {
+      "case_id": "hail-repair",
+      "video_id": "20HYrn6opWI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/20HYrn6opWI.md",
+      "transcript_sha256": "122e455e39b65bc3d11778117536e91a01fbcbb15e2c437fcd28eaf0accfae41",
+      "transcript_chars": 14062,
+      "reference": "people",
+      "choice": "people",
+      "match": true,
+      "probabilities": {
+        "retention": 0,
+        "people": 1,
+        "leads": 0,
+        "focus": 0,
+        "sales": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.03,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953767-DX8HU7aI4xyxPHCzXlOo",
+      "usage": {
+        "input_tokens": 4189,
+        "output_tokens": 63,
+        "cost": 0.000175938
+      }
+    },
+    {
+      "case_id": "fitness-offer",
+      "video_id": "SWum9PUPSjE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/SWum9PUPSjE.md",
+      "transcript_sha256": "2b864647f0349e98014317ffa5318267703afd6cda5a765c27fc797e826225a5",
+      "transcript_chars": 5338,
+      "reference": "leads",
+      "choice": "offer",
+      "match": false,
+      "probabilities": {
+        "offer": 0.77,
+        "sales": 0.02,
+        "people": 0,
+        "leads": 0.16,
+        "retention": 0,
+        "focus": 0.05
+      },
+      "confidence": 0.72,
+      "latency_seconds": 0.824,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953768-8gyYDvAOIFSKYfeEwiZC",
+      "usage": {
+        "input_tokens": 2020,
+        "output_tokens": 63,
+        "cost": 8.484e-05
+      }
+    },
+    {
+      "case_id": "ai-consultant",
+      "video_id": "CWK1kQTWagM",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/CWK1kQTWagM.md",
+      "transcript_sha256": "15121dae6b824187c77330548ce16bf154f8f2fc149e95d3ed18ed6581009885",
+      "transcript_chars": 4761,
+      "reference": "offer",
+      "choice": "focus",
+      "match": false,
+      "probabilities": {
+        "offer": 0.23,
+        "leads": 0,
+        "people": 0,
+        "sales": 0,
+        "retention": 0,
+        "focus": 0.77
+      },
+      "confidence": 0.72,
+      "latency_seconds": 0.388,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790953769-Tlg1YxOtMhK4XKppETtn",
+      "usage": {
+        "input_tokens": 1904,
+        "output_tokens": 63,
+        "cost": 7.9968e-05
+      }
+    }
+  ],
+  "matches": 8,
+  "total_cost_usd": 0.00119095
+}

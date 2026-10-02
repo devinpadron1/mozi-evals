@@ -1,61 +1,322 @@
 import {readJson} from './data.mjs';
-const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const human=x=>String(x??'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
-const list=items=>`<ul>${(items||[]).map(x=>`<li>${escape(x)}</li>`).join('')}</ul>`;
-const link=(url,text)=>`<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(text)}</a>`;
-const thumbnail=c=>`<img src="${escape(c.source.thumbnail_url)}" alt="${escape(c.source.title)}" loading="lazy" decoding="async">`;
-const table=document.querySelector('#evals'),status=document.querySelector('#status'),runButton=document.querySelector('#run');
-let manifest,report=null,localRunner=false,busy=false;
-const tabs=[...document.querySelectorAll('[role=tab]')];
-function selectTab(id,focus=false){
-  const selected=tabs.find(t=>t.id===id)||tabs[0];
-  for(const tab of tabs){const active=tab===selected;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;document.getElementById(tab.getAttribute('aria-controls')).hidden=!active;}
-  if(focus)selected.focus();
+
+const byId = id => document.getElementById(id);
+const human = value => String(value ?? '').replaceAll('_', ' ').replace(/\b\w/g, letter => letter.toUpperCase());
+const make = (tag, className, value) => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (value !== undefined) node.textContent = value;
+  return node;
+};
+let manifest;
+let spec;
+let baselineSpec;
+let report = null;
+let progress = null;
+let baselineReport = null;
+let baselineProgress = null;
+let localRunner = false;
+let keyConfigured = false;
+let workerCount = 32;
+let active = false;
+let errorMessage = '';
+let pollingTimer = null;
+const expandedBreakdowns = new Set();
+
+function iconFor(label) {
+  const icon = make('span', 'constraint-icon ' + label);
+  icon.setAttribute('aria-hidden', 'true');
+  return icon;
 }
-for(const tab of tabs){
-  tab.onclick=()=>{selectTab(tab.id);history.replaceState(null,'',tab.id==='tab-evaluations'?'#evaluations':'#manifest');};
-  tab.onkeydown=e=>{const index=tabs.indexOf(tab);const next={ArrowRight:(index+1)%tabs.length,ArrowLeft:(index+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[e.key];if(next!==undefined){e.preventDefault();tabs[next].click();tabs[next].focus();}};
+function thumbnailLink(item) {
+  const anchor = make('a', 'case-thumbnail');
+  anchor.href = item.source.url;
+  anchor.target = '_blank';
+  anchor.rel = 'noopener noreferrer';
+  anchor.setAttribute('aria-label', 'Watch ' + item.name);
+  anchor.title = 'Watch ' + item.name;
+  const image = document.createElement('img');
+  image.src = item.source.thumbnail_url;
+  image.alt = '';
+  image.loading = 'lazy';
+  image.decoding = 'async';
+  anchor.append(image);
+  return anchor;
 }
-addEventListener('hashchange',()=>selectTab(location.hash==='#evaluations'?'tab-evaluations':'tab-manifest'));
-selectTab(location.hash==='#evaluations'?'tab-evaluations':'tab-manifest');
-function intake(c){return Object.entries(c.inputs).map(([key,value])=>`<div class="field"><strong>${escape(human(key))}</strong>${Array.isArray(value)?list(value):escape(typeof value==='number'?value.toLocaleString('en-US'):value)}</div>`).join('');}
-function reference(c){return `<span class="label">${escape(human(c.reference.constraint))}</span><p>${escape(c.reference.diagnosis)}</p><div class="field"><strong>Next action</strong>${escape(c.reference.action)}</div><details><summary>Alternatives & caveat</summary><div class="field"><strong>Acceptable alternatives</strong>${list(c.reference.acceptable_alternatives)}</div><p class="note">${escape(c.reference.caution)}</p></details>`;}
-function renderManifest(){
-  document.querySelector('#case-count').textContent=manifest.cases.length;
-  document.querySelector('#eval-count').textContent=manifest.cases.length*2;
-  document.querySelector('#dataset-meta').textContent=`${manifest.cases.length} cases · Baseline vs. grounded`;
-  document.querySelector('#manifest-status').textContent='Reference labels pending expert review.';
-  const criteriaCopy={diagnosis_agreement:['Diagnosis','Matches the reference constraint and action.'],grounded_advice:['Grounding','Uses intake facts without inventing claims.'],missing_information:['Missing info','Asks a question that could change the advice.'],label_match:['Label match','Exact constraint label: 0 or 1.']};
-  document.querySelector('#criteria').innerHTML=manifest.judgement.criteria.map(c=>{const [name,text]=criteriaCopy[c.id];return `<div class="criterion"><h3>${escape(name)}</h3><p>${escape(text)}</p></div>`;}).join('');
-  document.querySelector('#rubric').innerHTML=manifest.judgement.criteria.map(c=>`<div class="rubric-criterion"><h3>${escape(human(c.id))} · ${c.method==='llm_judge'?'Model judge':'Exact match'}</h3><p>${escape(c.criteria)}</p>${c.anchors?`<p class="anchors">${Object.entries(c.anchors).sort((a,b)=>Number(a[0])-Number(b[0])).map(([score,description])=>`${escape(score)}: ${escape(description)}`).join(' · ')}</p>`:''}</div>`).join('');
-  document.querySelector('#cases').innerHTML=manifest.cases.map((c,i)=>`<article class="case" id="case-${escape(c.id)}"><div class="case-media">${link(c.source.url,'').replace('></a>',`>${thumbnail(c)}</a>`)}<div class="video-title">${link(c.source.url,'Watch video ↗')}</div></div><div class="case-content"><div class="case-title"><h2><span class="case-number">${String(i+1).padStart(2,'0')}</span>${escape(c.name)}</h2><span class="constraint-label">${escape(human(c.reference.constraint))}</span></div><p class="metrics"><span>Revenue <b>${escape(c.revenue)}</b></span><span>Goal <b>${escape(c.goal)}</b></span></p><div class="case-glance"><div><h3>Signals</h3>${list(c.display_summary.signals)}</div><div><h3>Reference action</h3><p>${escape(c.display_summary.action)}</p></div></div><details class="case-details"><summary>Details & source</summary><div class="case-columns"><div><h3>Full intake</h3>${intake(c)}</div><div><h3>Full reference</h3>${reference(c)}</div></div><div class="source-details"><p>${escape(c.source.title)}<br>Owner input: ${escape(c.source.input_window)}<br>Reference advice: ${escape(c.source.reference_window)}</p><p>${escape(c.source.transcript_source)}</p>${link(c.source.url+'&t='+c.source.reference_seconds+'s','Watch reference segment')}${link(c.source.transcript_url,'Read transcript')}</div></details></div></article>`).join('');
-  document.querySelector('#method').innerHTML=`<p>${escape(manifest.reference_status)}</p><p>${escape(manifest.dataset_version)} · ${escape(manifest.prompts.version)}</p><dl><dt>Model</dt><dd>${escape(manifest.model.name)} · Reasoning ${escape(manifest.model.reasoning_effort)} · Temperature ${escape(manifest.model.temperature??'default')} · ${escape(manifest.model.samples_per_case)} sample per case and prompt</dd><dt>Judge</dt><dd>${escape(manifest.judgement.model)} · Reasoning ${escape(manifest.judgement.reasoning_effort)} · Temperature ${escape(manifest.judgement.temperature??'default')}</dd></dl><details><summary>Prompt comparison</summary><dl><dt>Baseline</dt><dd>${escape(manifest.prompts.baseline)}</dd><dt>Grounded</dt><dd>${escape(manifest.prompts.grounded)}</dd></dl></details><details><summary>Framework context supplied to the grounded prompt</summary>${manifest.prompts.framework.map(s=>`<div class="field"><strong>${escape(s.title)}</strong><p>${escape(s.text)}</p>${link(s.url,s.locator)}</div>`).join('')}</details><details><summary>Judge instructions</summary><p>${escape(manifest.judgement.system_prompt)}</p></details>${list(manifest.limitations)}`;
+function renderRules() {
+  byId('question').textContent = spec.question.instructions;
+  const definitions = byId('criteria');
+  definitions.replaceChildren();
+  for (const label of manifest.prompts.taxonomy) {
+    const term = make('dt', 'criteria-term');
+    term.append(iconFor(label), make('span', '', human(label)));
+    definitions.append(term, make('dd', '', spec.question.criteria[label]));
+  }
 }
-function score(r,key){const m=r?.scores?.[key];return m?`${Number(m.score).toFixed(2)}<details><summary>Judgment</summary><div class="reason">${escape(m.reason)}</div></details>`:'<span class="pending">—</span>';}
-function output(brief){return `<strong>${escape(human(brief.constraint))}</strong><details class="output"><summary>Full output</summary><p>${escape(brief.diagnosis)}</p><strong>Evidence</strong>${list(brief.evidence)}<strong>Next action</strong><p>${escape(brief.next_action)}</p><strong>Follow-up question</strong><p>${escape(brief.follow_up_question)}</p><strong>Missing information</strong>${list(brief.missing_information)}<strong>Sources</strong><p>${escape(brief.source_ids.join(', ')||'None cited')}</p></details>`;}
-function evaluationCell(r){
-  if(!r)return '<span class="pending">Not run</span>';
-  const metrics=[['diagnosis_agreement','Diagnosis'],['grounded_advice','Grounding'],['missing_information','Missing info'],['label_match','Label match']];
-  return `${output(r.brief)}<div class="eval-metrics">${metrics.map(([key,name])=>`<div><span>${name}</span>${score(r,key)}</div>`).join('')}</div><div class="eval-latency">Latency ${Number(r.latency_seconds).toFixed(2)}s</div>`;
+function currentResults() {
+  if (active || progress?.status === 'failed') return progress?.results || [];
+  return report?.results || progress?.results || [];
 }
-function render(){
-  table.innerHTML=manifest.cases.map(c=>{const results=['baseline','grounded'].map(variant=>report?.results.find(r=>r.case_id===c.id&&r.variant===variant));return `<tr><td><div class="eval-case">${link(c.source.url,'').replace('></a>',`>${thumbnail(c)}</a>`)}<div><strong>${escape(c.name)}</strong><details><summary>Input & source</summary>${intake(c)}${link(c.source.url,'Source video')}</details></div></div></td><td>${escape(human(c.reference.constraint))}<details><summary>Reference</summary>${reference(c)}</details></td>${results.map(r=>`<td class="eval-result">${evaluationCell(r)}</td>`).join('')}</tr>`;}).join('');
-  status.textContent=busy?'Running evaluations…':report?`${report.model} · Judge: ${report.judge_model} · ${report.results.length} outputs`:'';
-  status.hidden=!status.textContent;
-  runButton.disabled=busy;runButton.textContent=busy?'Running…':'Run evals';
+function currentBaselineResults() {
+  if (baselineProgress?.status === 'running' || baselineProgress?.status === 'failed') return baselineProgress.results || [];
+  return baselineReport?.results || baselineProgress?.results || [];
 }
-async function loadReport(){
-  const response=await fetch('report.json?v='+Date.now());
-  const value=await readJson(response,{optional:true,label:'Saved evaluation report'});
-  if(value===null)return;
-  const pairs=manifest.cases.flatMap(c=>['baseline','grounded'].map(v=>c.id+':'+v));
-  if(value.model!==manifest.model.name||value.judge_model!==manifest.judgement.model||value.dataset_version!==manifest.dataset_version||value.prompt_version!==manifest.prompts.version||!Array.isArray(value.results)||value.results.length!==pairs.length||new Set(value.results.map(r=>r.case_id+':'+r.variant)).size!==pairs.length||value.results.some(r=>!pairs.includes(r.case_id+':'+r.variant)))throw new Error('Saved report does not match this manifest. Run evaluations again.');
-  report=value;
+function renderCases() {
+  const body = byId('experiment-cases');
+  for (const details of body.querySelectorAll('.score-breakdown[open]')) {
+    expandedBreakdowns.add(details.dataset.caseId);
+  }
+  body.replaceChildren();
+  const results = new Map(currentResults().map(result => [result.case_id, result]));
+  const baselines = new Map(currentBaselineResults().map(result => [result.case_id, result]));
+  for (const [index, item] of manifest.cases.entries()) {
+    const row = make('tr');
+    const video = make('td', 'video-cell');
+    const videoContent = make('div', 'video-content');
+    videoContent.append(thumbnailLink(item));
+    const description = make('div', 'video-description');
+    const title = make('a', '', `${String(index + 1).padStart(3, '0')} · ${item.name}`);
+    title.href = item.source.url;
+    title.target = '_blank';
+    title.rel = 'noopener noreferrer';
+    description.append(title);
+    videoContent.append(description);
+    video.append(videoContent);
+    const baselineCell = make('td', 'classification-cell');
+    const baseline = baselines.get(item.id);
+    if (baseline) {
+      const value = make('div', 'constraint-result ' + baseline.choice);
+      value.title = baseline.basis || '';
+      value.append(make('strong', '', human(baseline.choice)), iconFor(baseline.choice));
+      baselineCell.append(value);
+    } else baselineCell.append(make('span', 'queued', baselineProgress?.status === 'running' ? 'Waiting' : '—'));
+    const classification = make('td', 'classification-cell');
+    const result = results.get(item.id);
+    if (result) {
+      const label = result.choice;
+      const value = make('div', 'constraint-result ' + label);
+      value.append(make('strong', '', human(label)), iconFor(label));
+      const details = make('details', 'score-breakdown');
+      details.dataset.caseId = item.id;
+      details.open = expandedBreakdowns.has(item.id);
+      const summary = make('summary');
+      summary.setAttribute('aria-label', `View Jev breakdown for ${item.name}`);
+      summary.append(value);
+      details.append(summary);
+      details.addEventListener('toggle', () => {
+        if (details.open) expandedBreakdowns.add(item.id);
+        else expandedBreakdowns.delete(item.id);
+      });
+      const breakdown = make('div', 'breakdown-panel');
+      const confidence = make('p', 'breakdown-confidence');
+      confidence.append(make('span', '', 'Confidence'), make('strong', '', `${Math.round(Number(result.confidence || 0) * 100)}%`));
+      breakdown.append(confidence);
+      for (const option of manifest.prompts.taxonomy) {
+        const score = Number(result.probabilities?.[option] || 0);
+        const line = make('div', 'breakdown-score' + (option === label ? ' selected' : ''));
+        const name = make('span', 'breakdown-label', human(option));
+        const track = make('span', 'breakdown-track');
+        track.setAttribute('aria-hidden', 'true');
+        const fill = make('span', 'breakdown-fill');
+        fill.style.width = `${Math.max(0, Math.min(100, score * 100))}%`;
+        track.append(fill);
+        const percent = make('span', 'breakdown-percent', `${Math.round(score * 100)}%`);
+        line.append(name, track, percent);
+        breakdown.append(line);
+      }
+      details.append(breakdown);
+      classification.append(details);
+    } else classification.append(make('span', 'queued', active ? 'Waiting' : '—'));
+    row.append(video, baselineCell, classification);
+    body.append(row);
+  }
+  byId('results-summary').textContent = `${results.size} / ${manifest.cases.length}`;
 }
-async function run(){if(busy)return;busy=true;render();try{const response=await fetch('/api/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(!response.ok)throw new Error((await readJson(response,{label:'Evaluation runner'})).error||'Could not start evaluation');while(true){await new Promise(resolve=>setTimeout(resolve,1800));const response=await fetch('/api/status');if(!response.ok)throw new Error('Lost connection to local runner');const job=await readJson(response,{label:'Evaluation status'});if(job.status==='failed')throw new Error(job.error);if(job.status==='completed')break;}await loadReport();if(!report)throw new Error('The evaluation finished without a saved report.');busy=false;render();}catch(e){busy=false;render();status.textContent=e.message;status.hidden=false;}}
-try{
-  const response=await fetch('manifest.json');manifest=await readJson(response,{label:'Evaluation manifest'});renderManifest();
-  let reportError;try{await loadReport();}catch(e){reportError=e.message;}
-  if(['localhost','127.0.0.1'].includes(location.hostname)){try{const response=await fetch('/api/health');if(response.ok)localRunner=(await readJson(response,{label:'Local runner'})).runner===true;}catch{}}
-  runButton.hidden=!localRunner;runButton.onclick=run;render();if(reportError){status.textContent=reportError;status.hidden=false;}
-}catch(e){document.querySelector('#manifest-status').textContent=e.message;status.textContent=e.message;status.hidden=false;}
+function formatDuration(seconds) {
+  const total = Math.max(0, Math.floor(Number(seconds) || 0));
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const remainder = total % 60;
+  return hours ? `${hours}:${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}` : `${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`;
+}
+function elapsedSeconds() {
+  if (!progress) return report?.total_elapsed_seconds || 0;
+  if (active && progress.started_at) return Math.max(Number(progress.elapsed_seconds) || 0, Date.now() / 1000 - progress.started_at);
+  return progress.elapsed_seconds || report?.total_elapsed_seconds || 0;
+}
+function renderProgress() {
+  const total = manifest?.cases.length || 500;
+  const live = active || progress?.status === 'failed';
+  const finished = Math.min(total, Number(live ? progress?.finished : report?.results.length ?? progress?.finished ?? 0));
+  const complete = Math.min(total, Number(live ? progress?.completed : report?.results.length ?? progress?.completed ?? 0));
+  const cost = Number(live ? progress?.total_cost_usd : report?.total_cost_usd ?? progress?.total_cost_usd ?? 0);
+  const fraction = total ? finished / total : 0;
+  byId('progress-fill').style.width = `${(fraction * 100).toFixed(1)}%`;
+  byId('progress-track').setAttribute('aria-valuenow', String(Math.round(fraction * 100)));
+  byId('progress-count').textContent = `${complete} / ${total} complete${progress?.failed ? ` · ${progress.failed} failed` : ''}`;
+  byId('elapsed-time').textContent = formatDuration(elapsedSeconds());
+  byId('api-cost').textContent = '$' + (Number.isFinite(cost) ? cost.toFixed(4) : '0.0000');
+  const jevByCase = new Map(currentResults().map(result => [result.case_id, result]));
+  const paired = currentBaselineResults().filter(result => jevByCase.has(result.case_id));
+  const matches = paired.filter(result => jevByCase.get(result.case_id).choice === result.choice).length;
+  byId('baseline-match').textContent = paired.length ? `${Math.round(matches / paired.length * 100)}%` : '—';
+  byId('baseline-match-detail').textContent = paired.length ? `${matches} / ${paired.length} cases match` : 'Awaiting paired classifications';
+  byId('runtime-status').textContent = active
+    ? ''
+    : errorMessage || (report ? '' : `Ready to classify ${total.toLocaleString()} complete transcripts.`);
+}
+function render() {
+  if (!manifest || !spec) return;
+  renderRules();
+  renderCases();
+  renderProgress();
+  const button = byId('run-jev');
+  byId('clear-run').closest('.run-actions').hidden = !localRunner;
+  button.disabled = active || !keyConfigured;
+  button.classList.toggle('is-running', active);
+  byId('run-jev').querySelector('.run-button-label').textContent = active ? 'Classifying…' : 'Run Jev';
+  const hasRun = Boolean(report || (progress && progress.status !== 'running' && progress.status !== 'idle'));
+  byId('clear-run').disabled = active || !hasRun;
+  byId('page-status').textContent = errorMessage || (!localRunner
+      ? 'Start the local Python server to run classification.'
+    : !keyConfigured
+      ? 'Set OPENROUTER_API_KEY in the local environment or .env, then restart the server.'
+      : '');
+  byId('page-status').hidden = !byId('page-status').textContent;
+  byId('run-meta').textContent = report ? `Last run · ${new Date(report.created_at).toLocaleString()}` : '';
+}
+async function loadReport() {
+  const response = await fetch('jev_report.json?v=' + Date.now());
+  const value = await readJson(response, {optional: true, label: 'Saved Jev report'});
+  if (value === null) { report = null; return; }
+  const ids = manifest.cases.map(item => item.id);
+  const labels = manifest.prompts.taxonomy;
+  if (value.dataset_version !== manifest.dataset_version || value.spec_version !== spec.version ||
+      value.model !== spec.model || !Array.isArray(value.results) || value.results.length !== ids.length ||
+      new Set(value.results.map(result => result.case_id)).size !== ids.length ||
+      value.results.some(result => !ids.includes(result.case_id) || !labels.includes(result.choice)))
+    throw new Error(`Saved Jev report does not match these ${ids.length.toLocaleString()} cases. Run Jev again.`);
+  report = value;
+}
+async function loadBaselineReport() {
+  const response = await fetch('baseline_report.json?v=' + Date.now());
+  const value = await readJson(response, {optional: true, label: 'Saved baseline report'});
+  if (value === null) { baselineReport = null; return; }
+  const ids = manifest.cases.map(item => item.id);
+  const labels = manifest.prompts.taxonomy;
+  if (value.dataset_version !== manifest.dataset_version || value.spec_version !== baselineSpec.version ||
+      value.model !== baselineSpec.model || !Array.isArray(value.results) ||
+      new Set(value.results.map(result => result.case_id)).size !== value.results.length ||
+      value.results.some(result => !ids.includes(result.case_id) || !labels.includes(result.choice)))
+    throw new Error('Saved baseline report does not match this dataset and taxonomy.');
+  baselineReport = value;
+}
+async function refreshBaselineStatus() {
+  const response = await fetch('/api/baseline/status');
+  if (!response.ok) return;
+  const job = await readJson(response, {label: 'Baseline status'});
+  if (job.progress) baselineProgress = job.progress;
+  if (job.status === 'completed' || baselineProgress?.status === 'completed') await loadBaselineReport();
+}
+async function refreshStatus() {
+  const response = await fetch('/api/jev/status');
+  if (!response.ok) throw new Error('Lost connection to the local runner.');
+  const job = await readJson(response, {label: 'Jev status'});
+  if (job.progress) progress = job.progress;
+  active = job.status === 'running' || progress?.status === 'running';
+  if (job.status === 'failed' || progress?.status === 'failed') {
+    active = false;
+    errorMessage = job.error || `${progress?.failed || 1} transcript(s) failed. Completed classifications are shown below.`;
+  } else if (job.status === 'completed' || progress?.status === 'completed') {
+    await loadReport();
+    active = false;
+    errorMessage = '';
+  }
+  render();
+  return active;
+}
+function startPolling() {
+  if (pollingTimer) clearTimeout(pollingTimer);
+  const poll = async () => {
+    if (active) {
+      try { await refreshStatus(); }
+      catch (error) { errorMessage = error.message; render(); }
+    } else renderProgress();
+    try { await refreshBaselineStatus(); } catch (error) { console.warn(error); }
+    renderCases();
+    renderProgress();
+    pollingTimer = setTimeout(poll, active ? 250 : 1000);
+  };
+  pollingTimer = setTimeout(poll, active ? 250 : 1000);
+}
+async function runJev() {
+  if (active || !keyConfigured) return;
+  errorMessage = '';
+  report = null;
+  progress = {status: 'running', started_at: Date.now() / 1000, elapsed_seconds: 0, total: manifest.cases.length,
+    finished: 0, completed: 0, failed: 0, workers: workerCount, total_cost_usd: 0, results: []};
+  active = true;
+  render();
+  startPolling();
+  try {
+    const response = await fetch('/api/jev/evaluate', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{}'});
+    if (!response.ok) throw new Error((await readJson(response, {label: 'Jev runner'})).error || 'Could not start Jev.');
+  } catch (error) {
+    active = false;
+    errorMessage = error.message;
+    render();
+  }
+}
+byId('run-jev').onclick = runJev;
+byId('clear-run').onclick = async () => {
+  if (active) return;
+  errorMessage = '';
+  try {
+    const response = await fetch('/api/jev/clear', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{}'});
+    if (!response.ok) throw new Error((await readJson(response, {label: 'Clear run'})).error || 'Could not clear the run.');
+    report = null;
+    progress = null;
+    baselineReport = null;
+    baselineProgress = null;
+    errorMessage = '';
+    render();
+  } catch (error) {
+    errorMessage = error.message;
+    render();
+  }
+};
+
+try {
+  const manifestResponse = await fetch('manifest.json?v=' + Date.now());
+  manifest = await readJson(manifestResponse, {label: 'Case data'});
+  const specResponse = await fetch('jev_spec.json?v=' + Date.now());
+  spec = await readJson(specResponse, {label: 'Jev specification'});
+  const baselineSpecResponse = await fetch('baseline_spec.json?v=' + Date.now());
+  baselineSpec = await readJson(baselineSpecResponse, {label: 'Baseline specification'});
+  try { await loadReport(); } catch (error) { errorMessage = error.message; }
+  try { await loadBaselineReport(); } catch (error) { errorMessage = error.message; }
+  if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+    try {
+      const response = await fetch('/api/health');
+      if (response.ok) {
+        const health = await readJson(response, {label: 'Local runner'});
+        localRunner = health.runner === true;
+        keyConfigured = health.jev_configured === true;
+        workerCount = Number(health.jev_workers) || 32;
+      }
+      const statusResponse = await fetch('/api/jev/status');
+      if (statusResponse.ok) {
+        const job = await readJson(statusResponse, {label: 'Jev status'});
+        if (job.progress) progress = job.progress;
+        active = job.status === 'running' || progress?.status === 'running';
+        if (active) startPolling();
+      }
+      await refreshBaselineStatus();
+    } catch {}
+  }
+  render();
+  startPolling();
+} catch (error) {
+  byId('page-status').textContent = error.message;
+  byId('runtime-status').textContent = error.message;
+}

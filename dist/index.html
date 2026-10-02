@@ -3,33 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mozi Evals</title>
+  <title>Constraint Classifier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="acq-favicon.ico?v=1" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="style.css?v=36">
 </head>
 <body>
-  <header class="masthead"><div><strong>Mozi Evals</strong>
-    <nav class="tabs" role="tablist" aria-label="Evaluation workspace">
-      <button role="tab" id="tab-manifest" aria-controls="panel-manifest" aria-selected="true" tabindex="0">Manifest <span id="case-count"></span></button>
-      <button role="tab" id="tab-evaluations" aria-controls="panel-evaluations" aria-selected="false" tabindex="-1">Evaluations <span id="eval-count"></span></button>
-    </nav>
-  </div></header>
+  <header class="masthead"><div class="masthead-inner"><div class="masthead-brand"><img src="acq-favicon.ico?v=1" alt=""><strong>Mozi Evals</strong></div><nav class="tabs" role="tablist" aria-label="Classification view"><button id="tab-classify" role="tab" aria-controls="panel-classify" aria-selected="true" tabindex="0">Classify</button></nav><span aria-hidden="true"></span></div></header>
   <main>
-    <section id="panel-manifest" role="tabpanel" aria-labelledby="tab-manifest">
-      <div class="heading"><h1>Eval manifest</h1><span id="dataset-meta" class="muted"></span></div>
-      <p id="manifest-status" role="status">Loading manifest…</p>
-      <section class="criteria-block" aria-labelledby="criteria-heading"><div class="criteria-heading"><h2 id="criteria-heading">Judgment criteria</h2><span>Scores 0–1</span></div><div id="criteria"></div><details class="full-rubric"><summary>Full scoring rubric</summary><div id="rubric"></div></details></section>
-      <div id="cases"></div>
-      <details class="methodology"><summary>Method & limitations</summary><div id="method"></div></details>
+    <section id="panel-classify" role="tabpanel" aria-labelledby="tab-classify">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="heading"><div><p class="eyebrow">500 MoreMozi videos</p><h1 id="page-title">Constraint Classifier</h1><p class="intro-copy">One transcript in, one business constraint out. Runtime classification is active; Sol 6.1 provides the baseline.</p></div></div>
+        <figure class="flow-figure"><img src="jev-sol-classification-flow.png?v=3" alt="A MoreMozi transcript video flows into Jev at runtime and Sol 6.1 as the baseline, producing one of six constraints: Focus, Leads, Sales, Offer, Retention, or People."></figure>
+      </section>
+
+      <section class="runtime" aria-label="Live classification run">
+        <div class="runtime-grid">
+          <div class="runtime-top"><div class="runtime-controls"><p id="runtime-status" role="status">Ready to classify 500 complete transcripts.</p></div></div>
+          <div id="progress-track" class="progress-track" role="progressbar" aria-label="Transcript classifications complete" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0"><div id="progress-fill" class="progress-fill"></div></div>
+          <div class="runtime-bottom">
+            <strong id="progress-count">0 / 500 complete</strong>
+            <div class="run-kpis" aria-label="Live run metrics">
+              <div class="run-kpi"><span>Elapsed</span><strong id="elapsed-time">00:00</strong></div>
+              <div class="run-kpi"><span>Cost</span><strong id="api-cost">$0.0000</strong></div>
+              <div class="run-kpi"><span>Match to baseline</span><strong id="baseline-match">—</strong><small id="baseline-match-detail">Awaiting baseline run</small></div>
+            </div>
+          </div>
+          <div class="run-actions" hidden>
+            <button id="run-jev" class="primary"><span class="play-icon" aria-hidden="true"></span><span class="run-button-label">Run Jev</span></button>
+            <button id="clear-run" class="clear-run" disabled><svg class="clear-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M8 6V4h8v2m3 0-1 14H6L5 6m4 4v6m6-6v6"/></svg><span>Clear Run</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="results" aria-labelledby="results-title">
+        <div class="section-heading"><div><h2 id="results-title">Case results</h2></div><span id="results-summary" class="summary">0 / 500</span></div>
+        <p id="page-status" class="page-status" role="status">Loading cases…</p>
+        <div class="table-scroll" role="region" aria-label="500 video classifications" tabindex="0"><table><thead><tr><th scope="col">Video</th><th scope="col">Constraint · Baseline</th><th scope="col">Constraint · Jev</th></tr></thead><tbody id="experiment-cases"></tbody></table></div>
+        <details class="method"><summary>Question and label definitions</summary><div class="method-body"><p id="question"></p><dl id="criteria"></dl><p>The transcripts include the advisor’s full resolution. Only the original 10 cases have provisional reference labels; this interface does not show them.</p></div></details>
+      </section>
     </section>
-    <section id="panel-evaluations" role="tabpanel" aria-labelledby="tab-evaluations" hidden>
-      <div class="heading"><h1>Evaluations</h1><button id="run" class="primary" hidden>Run evals</button></div>
-      <p id="status" role="status">Loading…</p>
-      <div class="table-scroll" role="region" aria-label="All evaluations" tabindex="0"><table><thead><tr><th scope="col">Case</th><th scope="col">Expected constraint</th><th scope="col">Baseline</th><th scope="col">Grounded</th></tr></thead><tbody id="evals"></tbody></table></div>
-    </section>
+
+    <section id="panel-insights" hidden aria-hidden="true"></section>
+    <footer><span>Source videos link to YouTube. Transcripts come from the Ask Hormozi corpus.</span><span id="run-meta"></span></footer>
   </main>
-  <script type="module" src="app.js"></script>
+  <script type="module" src="app.js?v=40"></script>
 </body>
 </html>

@@ -1,0 +1,2743 @@
+{
+  "schema_version": 2,
+  "created_at": "2026-10-02T16:53:00.744542+00:00",
+  "dataset_version": "moremozi-classify-v1-100-cases",
+  "spec_version": "jev-choice-v1",
+  "model": "typesafe/jev-1.13",
+  "question": {
+    "type": "choice",
+    "instructions": "Read the full automatic-caption transcript in `transcript`. Which single business constraint does the advisor ultimately prioritize for the owner's stated growth goal? Use the advisor's central diagnosis and recommended action when several problems are discussed. Ignore the promotional roadmap outro. Choose one of the six criteria below.",
+    "criteria": {
+      "focus": "The main recommendation is to prioritize one customer type, business line, offer, or activity because attention and resources are divided among competing directions.",
+      "leads": "The main problem is getting enough qualified prospects or reaching them consistently. The recommendation changes marketing, advertising, distribution, or the message used to attract prospects.",
+      "sales": "Prospects reach the business, but qualification, follow-up, quoting, closing, or expectations set during the sales process prevent durable sales.",
+      "offer": "The main recommendation changes what is sold or how it is packaged, priced, positioned, or introduced to buyers. The offer itself or buying path needs redesign.",
+      "retention": "Existing customers leave, fail to activate, do not get results, or do not continue using or buying. The recommendation improves onboarding, engagement, service, or renewal.",
+      "people": "The main bottleneck is the team: hiring, delegation, leadership, founder dependence, or capacity to deliver work and support growth."
+    }
+  },
+  "taxonomy": [
+    "focus",
+    "leads",
+    "sales",
+    "offer",
+    "retention",
+    "people"
+  ],
+  "input_kind": "complete automatic-caption Markdown, including advisor resolution",
+  "transcript_snapshot": {
+    "repository": "https://github.com/poseljacob/ask-hormozi",
+    "commit": "c3380be116ee134c029038d7a785a1e34f5d07a7",
+    "archive_url": "https://codeload.github.com/poseljacob/ask-hormozi/tar.gz/c3380be116ee134c029038d7a785a1e34f5d07a7",
+    "downloaded_at": "2026-10-02T16:44:10.614852+00:00",
+    "transcript_count": 2039,
+    "transcript_bytes": 15915617
+  },
+  "concurrency": 32,
+  "total_elapsed_seconds": 5.22,
+  "results": [
+    {
+      "case_id": "agency",
+      "video_id": "jOM-BzXV39M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/jOM-BzXV39M.md",
+      "transcript_sha256": "2422199448df259ccaee7a0ec76cf3202f09cf55714749e31b1c6d04446ef8d0",
+      "transcript_chars": 6217,
+      "reference": "leads",
+      "choice": "leads",
+      "match": true,
+      "probabilities": {
+        "people": 0,
+        "sales": 0,
+        "leads": 1,
+        "retention": 0,
+        "offer": 0,
+        "focus": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.248,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-ySOlyRsnyUV2M2Mdta7e",
+      "usage": {
+        "input_tokens": 2170,
+        "output_tokens": 64,
+        "cost": 9.114e-05
+      }
+    },
+    {
+      "case_id": "golf",
+      "video_id": "rFvU8s4xSsY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rFvU8s4xSsY.md",
+      "transcript_sha256": "2326e52c0bc6162ca0416a7d8b78d45c17dccd3aa03b6273b8d0b239f272aaad",
+      "transcript_chars": 8809,
+      "reference": "focus",
+      "choice": "focus",
+      "match": true,
+      "probabilities": {
+        "leads": 0,
+        "offer": 0.02,
+        "retention": 0,
+        "focus": 0.98,
+        "people": 0,
+        "sales": 0
+      },
+      "confidence": 0.97,
+      "latency_seconds": 1.229,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-m8Y3thG3mcSCXivz5QEF",
+      "usage": {
+        "input_tokens": 2894,
+        "output_tokens": 63,
+        "cost": 0.000121548
+      }
+    },
+    {
+      "case_id": "cloud",
+      "video_id": "0nqLmLYRgK0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0nqLmLYRgK0.md",
+      "transcript_sha256": "433cc74a493bd117725ac2ff6c0b2cfa550eb59e4c89d08418a1fac81fc81cdf",
+      "transcript_chars": 6140,
+      "reference": "offer",
+      "choice": "offer",
+      "match": true,
+      "probabilities": {
+        "sales": 0,
+        "people": 0.4,
+        "offer": 0.45,
+        "leads": 0.01,
+        "retention": 0.01,
+        "focus": 0.13
+      },
+      "confidence": 0.34,
+      "latency_seconds": 1.171,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-QNSP305WAzn2TPfRmsks",
+      "usage": {
+        "input_tokens": 2173,
+        "output_tokens": 63,
+        "cost": 9.1266e-05
+      }
+    },
+    {
+      "case_id": "kickboxing",
+      "video_id": "X4T_tITg_zY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/X4T_tITg_zY.md",
+      "transcript_sha256": "912b11ae1068c2200212d3d516444ce422dae84ea5740499510bb0bf10caaff7",
+      "transcript_chars": 6764,
+      "reference": "retention",
+      "choice": "retention",
+      "match": true,
+      "probabilities": {
+        "sales": 0,
+        "retention": 1,
+        "focus": 0,
+        "offer": 0,
+        "people": 0,
+        "leads": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.219,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-Yqn6Z9Ph9kDEOLVJXdZN",
+      "usage": {
+        "input_tokens": 2330,
+        "output_tokens": 65,
+        "cost": 9.786e-05
+      }
+    },
+    {
+      "case_id": "real-estate-saas",
+      "video_id": "bxnaIwzAC-M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/bxnaIwzAC-M.md",
+      "transcript_sha256": "893ddae32c13cf47de9223180a18ad7a98d0ea0b53f58393897aa72c1cf0133b",
+      "transcript_chars": 11955,
+      "reference": "retention",
+      "choice": "retention",
+      "match": true,
+      "probabilities": {
+        "offer": 0,
+        "retention": 1,
+        "people": 0,
+        "focus": 0,
+        "leads": 0,
+        "sales": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.298,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-lxls9RQnZDFchzagipgH",
+      "usage": {
+        "input_tokens": 3674,
+        "output_tokens": 65,
+        "cost": 0.000154308
+      }
+    },
+    {
+      "case_id": "electricity-sales",
+      "video_id": "wOjKcCodC8w",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/wOjKcCodC8w.md",
+      "transcript_sha256": "1fb0a24502b85cf7c49e3e0f7460a0df1e4863f4ad098f5c2a594206677f373b",
+      "transcript_chars": 3965,
+      "reference": "sales",
+      "choice": "sales",
+      "match": true,
+      "probabilities": {
+        "sales": 0.88,
+        "offer": 0.04,
+        "focus": 0,
+        "people": 0.02,
+        "leads": 0,
+        "retention": 0.06
+      },
+      "confidence": 0.85,
+      "latency_seconds": 1.256,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-68iaP3iFIdIoHgM50KJi",
+      "usage": {
+        "input_tokens": 1623,
+        "output_tokens": 63,
+        "cost": 6.8166e-05
+      }
+    },
+    {
+      "case_id": "concrete",
+      "video_id": "f0AY76fE9GI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/f0AY76fE9GI.md",
+      "transcript_sha256": "2f0fb6c1e7e0eae7997d34b44c6990e2c409ebfe0c3201cc7a321252e4e3212a",
+      "transcript_chars": 18245,
+      "reference": "sales",
+      "choice": "sales",
+      "match": true,
+      "probabilities": {
+        "leads": 0,
+        "retention": 0,
+        "offer": 0,
+        "people": 0,
+        "sales": 1,
+        "focus": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 2.111,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-ArGXlXXmjjDfvS0yqfSK",
+      "usage": {
+        "input_tokens": 5379,
+        "output_tokens": 63,
+        "cost": 0.000225918
+      }
+    },
+    {
+      "case_id": "hail-repair",
+      "video_id": "20HYrn6opWI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/20HYrn6opWI.md",
+      "transcript_sha256": "122e455e39b65bc3d11778117536e91a01fbcbb15e2c437fcd28eaf0accfae41",
+      "transcript_chars": 14062,
+      "reference": "people",
+      "choice": "people",
+      "match": true,
+      "probabilities": {
+        "focus": 0,
+        "leads": 0,
+        "sales": 0,
+        "offer": 0,
+        "retention": 0,
+        "people": 1
+      },
+      "confidence": 1,
+      "latency_seconds": 1.463,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-e4od608gsLbghsh3dmbs",
+      "usage": {
+        "input_tokens": 4189,
+        "output_tokens": 63,
+        "cost": 0.000175938
+      }
+    },
+    {
+      "case_id": "fitness-offer",
+      "video_id": "SWum9PUPSjE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/SWum9PUPSjE.md",
+      "transcript_sha256": "2b864647f0349e98014317ffa5318267703afd6cda5a765c27fc797e826225a5",
+      "transcript_chars": 5338,
+      "reference": "leads",
+      "choice": "offer",
+      "match": false,
+      "probabilities": {
+        "offer": 0.73,
+        "sales": 0.03,
+        "leads": 0.19,
+        "people": 0,
+        "retention": 0,
+        "focus": 0.05
+      },
+      "confidence": 0.67,
+      "latency_seconds": 1.131,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-O6YomGTCuzD5hF6JtRHt",
+      "usage": {
+        "input_tokens": 2020,
+        "output_tokens": 63,
+        "cost": 8.484e-05
+      }
+    },
+    {
+      "case_id": "ai-consultant",
+      "video_id": "CWK1kQTWagM",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/CWK1kQTWagM.md",
+      "transcript_sha256": "15121dae6b824187c77330548ce16bf154f8f2fc149e95d3ed18ed6581009885",
+      "transcript_chars": 4761,
+      "reference": "offer",
+      "choice": "focus",
+      "match": false,
+      "probabilities": {
+        "sales": 0,
+        "focus": 0.79,
+        "retention": 0,
+        "people": 0,
+        "leads": 0,
+        "offer": 0.21
+      },
+      "confidence": 0.75,
+      "latency_seconds": 1.287,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-OgE51IYNo9HrxRhkxUt6",
+      "usage": {
+        "input_tokens": 1904,
+        "output_tokens": 63,
+        "cost": 7.9968e-05
+      }
+    },
+    {
+      "case_id": "FZFAiQb9iCs",
+      "video_id": "FZFAiQb9iCs",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/FZFAiQb9iCs.md",
+      "transcript_sha256": "6e5cbdfdf380c18038d7f6dec8290a89f53bc16b7162d8d831ae46533e49594a",
+      "transcript_chars": 12913,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "sales": 0.06,
+        "focus": 0.12,
+        "people": 0.02,
+        "retention": 0,
+        "leads": 0.8,
+        "offer": 0
+      },
+      "confidence": 0.75,
+      "latency_seconds": 1.413,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-1mJRB2mZqkYcS78grFAc",
+      "usage": {
+        "input_tokens": 4112,
+        "output_tokens": 64,
+        "cost": 0.000172704
+      }
+    },
+    {
+      "case_id": "0QoFlch7N1k",
+      "video_id": "0QoFlch7N1k",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0QoFlch7N1k.md",
+      "transcript_sha256": "4849701040c477bc9d713718c040cc0352a8717effe9c907a1b4ed642e87ca8b",
+      "transcript_chars": 11923,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "offer": 0,
+        "retention": 0,
+        "focus": 0.88,
+        "sales": 0,
+        "leads": 0.09,
+        "people": 0.03
+      },
+      "confidence": 0.86,
+      "latency_seconds": 1.206,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-h8MEJFAQxWtxzdZvWzyI",
+      "usage": {
+        "input_tokens": 3846,
+        "output_tokens": 63,
+        "cost": 0.000161532
+      }
+    },
+    {
+      "case_id": "G0HQtTYZ25M",
+      "video_id": "G0HQtTYZ25M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/G0HQtTYZ25M.md",
+      "transcript_sha256": "3da4c49e0b351906d741bcb044c37d88d73fab2a62e0d6ce01516b8e966a85d0",
+      "transcript_chars": 10863,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "leads": 0.06,
+        "people": 0.13,
+        "focus": 0.75,
+        "retention": 0,
+        "sales": 0,
+        "offer": 0.06
+      },
+      "confidence": 0.7,
+      "latency_seconds": 2.217,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-Ef6iuaIkPagsIwyxIpGB",
+      "usage": {
+        "input_tokens": 3290,
+        "output_tokens": 63,
+        "cost": 0.00013818
+      }
+    },
+    {
+      "case_id": "Mu1Ami8WMpY",
+      "video_id": "Mu1Ami8WMpY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/Mu1Ami8WMpY.md",
+      "transcript_sha256": "e85f040eb50a7ee14e90f37968c88e1fcad18485172bea699cb7eab48becaff4",
+      "transcript_chars": 11482,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 1,
+        "leads": 0,
+        "offer": 0,
+        "people": 0,
+        "retention": 0,
+        "sales": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 2.012,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-DuTBlaTtQdhoONUsIRpX",
+      "usage": {
+        "input_tokens": 3649,
+        "output_tokens": 63,
+        "cost": 0.000153258
+      }
+    },
+    {
+      "case_id": "k_CVWlRD-xk",
+      "video_id": "k_CVWlRD-xk",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/k_CVWlRD-xk.md",
+      "transcript_sha256": "d219b2533dfd6e6f96b6984eb7da463dbad049b978b861e8b50f3902a3a0558a",
+      "transcript_chars": 8905,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "people": 0.61,
+        "focus": 0.12,
+        "retention": 0,
+        "leads": 0.26,
+        "offer": 0.01,
+        "sales": 0
+      },
+      "confidence": 0.53,
+      "latency_seconds": 1.332,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-oV1Qw64gDoWK2QLjnfXW",
+      "usage": {
+        "input_tokens": 2890,
+        "output_tokens": 63,
+        "cost": 0.00012138
+      }
+    },
+    {
+      "case_id": "nv-zT5jpcq8",
+      "video_id": "nv-zT5jpcq8",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/nv-zT5jpcq8.md",
+      "transcript_sha256": "cb530736bf13b8fd51b50c09f2780f1985ce976f773b32f421874b054102891f",
+      "transcript_chars": 7603,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "people": 0,
+        "retention": 0.3,
+        "sales": 0.06,
+        "focus": 0.61,
+        "offer": 0.03
+      },
+      "confidence": 0.53,
+      "latency_seconds": 1.208,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-aQgMw4K02auOZKLs21fR",
+      "usage": {
+        "input_tokens": 2523,
+        "output_tokens": 63,
+        "cost": 0.000105966
+      }
+    },
+    {
+      "case_id": "vSIiYJIhYks",
+      "video_id": "vSIiYJIhYks",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/vSIiYJIhYks.md",
+      "transcript_sha256": "da7bb5917f362c935141d86c7e304d2bc4dd2aa3d393b4f195fe2c3a3d0f5d78",
+      "transcript_chars": 8132,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "retention": 0.04,
+        "people": 0.9,
+        "sales": 0.02,
+        "focus": 0,
+        "leads": 0.03,
+        "offer": 0.01
+      },
+      "confidence": 0.88,
+      "latency_seconds": 1.21,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-Ckohx2oZV6LoxF6UcNvS",
+      "usage": {
+        "input_tokens": 2769,
+        "output_tokens": 63,
+        "cost": 0.000116298
+      }
+    },
+    {
+      "case_id": "z2GWrKKbDTk",
+      "video_id": "z2GWrKKbDTk",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/z2GWrKKbDTk.md",
+      "transcript_sha256": "ef8126601d483028cab5a83f83b5cd097fed86679295bd31a7ba5082cfc75915",
+      "transcript_chars": 12965,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "leads": 0.43,
+        "people": 0,
+        "retention": 0,
+        "sales": 0.04,
+        "focus": 0.23,
+        "offer": 0.3
+      },
+      "confidence": 0.31,
+      "latency_seconds": 1.051,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-rDOzL066j4HdiUaQ9YcM",
+      "usage": {
+        "input_tokens": 3943,
+        "output_tokens": 64,
+        "cost": 0.000165606
+      }
+    },
+    {
+      "case_id": "Ghi3cpRrK2A",
+      "video_id": "Ghi3cpRrK2A",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/Ghi3cpRrK2A.md",
+      "transcript_sha256": "697ec704d6f199b20c0b3d283794117ad727cfaf9ad1c1ca3d78664759f1c100",
+      "transcript_chars": 8212,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "sales": 0.17,
+        "offer": 0.18,
+        "people": 0,
+        "leads": 0.01,
+        "focus": 0.62,
+        "retention": 0.02
+      },
+      "confidence": 0.54,
+      "latency_seconds": 1.945,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-cnh0BSGJ10FqF1qzdKkc",
+      "usage": {
+        "input_tokens": 2752,
+        "output_tokens": 63,
+        "cost": 0.000115584
+      }
+    },
+    {
+      "case_id": "eoTXZpt7BQY",
+      "video_id": "eoTXZpt7BQY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/eoTXZpt7BQY.md",
+      "transcript_sha256": "b412bd29aa74de246a79ce7b10064c908a13c908daa674e75ec828fa2349eab3",
+      "transcript_chars": 7937,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0.72,
+        "focus": 0,
+        "sales": 0.28,
+        "leads": 0,
+        "offer": 0
+      },
+      "confidence": 0.66,
+      "latency_seconds": 1.924,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-DEjA4ThBGYFSeFN7SmOp",
+      "usage": {
+        "input_tokens": 2595,
+        "output_tokens": 63,
+        "cost": 0.00010899
+      }
+    },
+    {
+      "case_id": "-BSOPxkfrP4",
+      "video_id": "-BSOPxkfrP4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/-BSOPxkfrP4.md",
+      "transcript_sha256": "9196fe679dd99f302c422110992ec85bca31e68d21c94f5dcd366cdde4c4926f",
+      "transcript_chars": 8239,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "leads": 0.01,
+        "retention": 0,
+        "people": 0.99,
+        "focus": 0,
+        "sales": 0,
+        "offer": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 2.846,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-xwVCHju1Qc4SYYUJTkz2",
+      "usage": {
+        "input_tokens": 2675,
+        "output_tokens": 63,
+        "cost": 0.00011235
+      }
+    },
+    {
+      "case_id": "iUGY8vCDWUE",
+      "video_id": "iUGY8vCDWUE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/iUGY8vCDWUE.md",
+      "transcript_sha256": "e37e43ff40b4fce8f8daf421c143a73a076501636e846d578bca53f069ba7684",
+      "transcript_chars": 6062,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "sales": 0.01,
+        "offer": 0.27,
+        "leads": 0.02,
+        "retention": 0.01,
+        "focus": 0.6799999999999999,
+        "people": 0.01
+      },
+      "confidence": 0.63,
+      "latency_seconds": 1.169,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-cs0G5lr1AsuB9TRoXIh5",
+      "usage": {
+        "input_tokens": 2262,
+        "output_tokens": 63,
+        "cost": 9.5004e-05
+      }
+    },
+    {
+      "case_id": "aovpmQm7t7U",
+      "video_id": "aovpmQm7t7U",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/aovpmQm7t7U.md",
+      "transcript_sha256": "2c181638c0bd78ec1db26724112adf81e5b181bb352bd5f8602b7a2a4e4b84dd",
+      "transcript_chars": 9324,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0,
+        "sales": 0.01,
+        "focus": 0.24,
+        "leads": 0.17,
+        "offer": 0.58
+      },
+      "confidence": 0.49,
+      "latency_seconds": 1.547,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-KiC87wn9yODs1oc5GjEs",
+      "usage": {
+        "input_tokens": 2956,
+        "output_tokens": 63,
+        "cost": 0.000124152
+      }
+    },
+    {
+      "case_id": "yGgV2_DQnHM",
+      "video_id": "yGgV2_DQnHM",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/yGgV2_DQnHM.md",
+      "transcript_sha256": "40a65bab9b57f0760a21968d8ca136f943105ce5b80ef3386d137dd73af98f66",
+      "transcript_chars": 6907,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0,
+        "leads": 0,
+        "focus": 1,
+        "offer": 0,
+        "sales": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.886,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-dmMY62hpQrzy7RNWc0rg",
+      "usage": {
+        "input_tokens": 2395,
+        "output_tokens": 63,
+        "cost": 0.00010059
+      }
+    },
+    {
+      "case_id": "vOKmfdLbgwk",
+      "video_id": "vOKmfdLbgwk",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/vOKmfdLbgwk.md",
+      "transcript_sha256": "0b3b9cb86d91b1e9fcd67a7144b9ece55cd94429f2d3bdceded93abb9665c244",
+      "transcript_chars": 6423,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "leads": 0.01,
+        "sales": 0.05,
+        "retention": 0.13,
+        "offer": 0.1,
+        "focus": 0.49,
+        "people": 0.22
+      },
+      "confidence": 0.39,
+      "latency_seconds": 1.097,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-nemHJLEaUQXRWj6zzIY4",
+      "usage": {
+        "input_tokens": 2295,
+        "output_tokens": 63,
+        "cost": 9.639e-05
+      }
+    },
+    {
+      "case_id": "I4T31e_8RNw",
+      "video_id": "I4T31e_8RNw",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/I4T31e_8RNw.md",
+      "transcript_sha256": "eb84081d6b654b79827fe43701e8b3181abebed04f2177c83dbfa66cc900fb6c",
+      "transcript_chars": 7508,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0.41,
+        "focus": 0.02,
+        "sales": 0.03,
+        "leads": 0.54,
+        "offer": 0
+      },
+      "confidence": 0.45,
+      "latency_seconds": 1.269,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-10395jdUjzIINube8Ibd",
+      "usage": {
+        "input_tokens": 2596,
+        "output_tokens": 64,
+        "cost": 0.000109032
+      }
+    },
+    {
+      "case_id": "_fypivJPvbw",
+      "video_id": "_fypivJPvbw",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/_fypivJPvbw.md",
+      "transcript_sha256": "fe3e12439cd222704e1aedfc086ca8b60794242d7a0a2cd6bb956fed63d5b942",
+      "transcript_chars": 12897,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "offer": 0.54,
+        "leads": 0.08,
+        "retention": 0,
+        "focus": 0.38,
+        "people": 0
+      },
+      "confidence": 0.44,
+      "latency_seconds": 2.064,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-2napKAGG5FkZhllQLlaH",
+      "usage": {
+        "input_tokens": 4009,
+        "output_tokens": 63,
+        "cost": 0.000168378
+      }
+    },
+    {
+      "case_id": "tYd-tis3dO8",
+      "video_id": "tYd-tis3dO8",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/tYd-tis3dO8.md",
+      "transcript_sha256": "ca32eefc030088584a6a292dbee6aaf9286f35ad0ca81deb761918b894e57829",
+      "transcript_chars": 4852,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.72,
+        "offer": 0.25,
+        "sales": 0.03,
+        "leads": 0,
+        "retention": 0,
+        "people": 0
+      },
+      "confidence": 0.65,
+      "latency_seconds": 1.446,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-Cnx4GgK5BtmXPLGw0iEC",
+      "usage": {
+        "input_tokens": 1931,
+        "output_tokens": 63,
+        "cost": 8.1102e-05
+      }
+    },
+    {
+      "case_id": "wQYg_7ooaUs",
+      "video_id": "wQYg_7ooaUs",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/wQYg_7ooaUs.md",
+      "transcript_sha256": "45fadb4e17b464e9fda268eb12a5b66782a124d25170f624a5fba6c840900289",
+      "transcript_chars": 13503,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "leads": 0.89,
+        "people": 0,
+        "sales": 0.01,
+        "offer": 0.09,
+        "retention": 0,
+        "focus": 0.01
+      },
+      "confidence": 0.86,
+      "latency_seconds": 1.433,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-oDznD8hqtQTQj1WUqxGP",
+      "usage": {
+        "input_tokens": 4097,
+        "output_tokens": 64,
+        "cost": 0.000172074
+      }
+    },
+    {
+      "case_id": "ee7HW2-apqQ",
+      "video_id": "ee7HW2-apqQ",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/ee7HW2-apqQ.md",
+      "transcript_sha256": "453a49c3c15e60b14991195f49157ae8fdbd4a217aa5b2d3c61b0ba7cfcd235c",
+      "transcript_chars": 8505,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "people": 1,
+        "retention": 0,
+        "focus": 0,
+        "leads": 0,
+        "sales": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.905,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-UYdiOrnA9NpCeex6rJDM",
+      "usage": {
+        "input_tokens": 2738,
+        "output_tokens": 63,
+        "cost": 0.000114996
+      }
+    },
+    {
+      "case_id": "lgT0K9AMtnU",
+      "video_id": "lgT0K9AMtnU",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/lgT0K9AMtnU.md",
+      "transcript_sha256": "e98b5c60c7740b1215dcfa05b478105c91e0bcca7124ec1f3ef49f889666944b",
+      "transcript_chars": 8603,
+      "reference": null,
+      "choice": "sales",
+      "match": null,
+      "probabilities": {
+        "focus": 0,
+        "people": 0,
+        "retention": 0,
+        "leads": 0,
+        "sales": 1,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.322,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959981-sHKrAvAlE59weyFY3poe",
+      "usage": {
+        "input_tokens": 2859,
+        "output_tokens": 63,
+        "cost": 0.000120078
+      }
+    },
+    {
+      "case_id": "T3qqM4Lx9xM",
+      "video_id": "T3qqM4Lx9xM",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/T3qqM4Lx9xM.md",
+      "transcript_sha256": "49d372c54debe25b35127bd509504ab55ce6f406023e06825e6e7b641b84ed91",
+      "transcript_chars": 7435,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 1,
+        "retention": 0,
+        "leads": 0,
+        "offer": 0,
+        "sales": 0,
+        "people": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.748,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-zJvKypGVvoOGP8ImdHB5",
+      "usage": {
+        "input_tokens": 2585,
+        "output_tokens": 63,
+        "cost": 0.00010857
+      }
+    },
+    {
+      "case_id": "oZ078BdV0OI",
+      "video_id": "oZ078BdV0OI",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/oZ078BdV0OI.md",
+      "transcript_sha256": "b426b786463afa617f79409e33354b2d963725b02ce6a986a2d2b52173c21507",
+      "transcript_chars": 8339,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "leads": 0.92,
+        "retention": 0,
+        "offer": 0,
+        "people": 0.08,
+        "sales": 0,
+        "focus": 0
+      },
+      "confidence": 0.9,
+      "latency_seconds": 0.99,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-TJLczm2dFlhqfwnjDTA6",
+      "usage": {
+        "input_tokens": 2848,
+        "output_tokens": 64,
+        "cost": 0.000119616
+      }
+    },
+    {
+      "case_id": "rft9dsK8kxY",
+      "video_id": "rft9dsK8kxY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rft9dsK8kxY.md",
+      "transcript_sha256": "5b91011d0351384cf847655f85c9dda3ae8574f124b0c62f79c7187b3bf8bbb4",
+      "transcript_chars": 9497,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "offer": 0,
+        "people": 1,
+        "sales": 0,
+        "leads": 0,
+        "retention": 0,
+        "focus": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.382,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-krHvaSGA2Wn0LhgLnTCQ",
+      "usage": {
+        "input_tokens": 2988,
+        "output_tokens": 63,
+        "cost": 0.000125496
+      }
+    },
+    {
+      "case_id": "CybFcg9feiA",
+      "video_id": "CybFcg9feiA",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/CybFcg9feiA.md",
+      "transcript_sha256": "4dcbef0f1c0fd3cbd6520c349c50cd92c26882343f9adaec06eb9f86b89ffd18",
+      "transcript_chars": 6142,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "people": 0.67,
+        "offer": 0.12,
+        "sales": 0.02,
+        "retention": 0,
+        "leads": 0,
+        "focus": 0.19
+      },
+      "confidence": 0.59,
+      "latency_seconds": 0.894,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-xI3QvFaNKNGNDxQ8Utog",
+      "usage": {
+        "input_tokens": 2252,
+        "output_tokens": 63,
+        "cost": 9.4584e-05
+      }
+    },
+    {
+      "case_id": "BjS9rqul4x4",
+      "video_id": "BjS9rqul4x4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/BjS9rqul4x4.md",
+      "transcript_sha256": "405d5ee57879588362a73b377fcfd85d4d5f586ac1fe83558d42e31d6003af63",
+      "transcript_chars": 10088,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "offer": 1,
+        "leads": 0,
+        "retention": 0,
+        "focus": 0,
+        "people": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 1.229,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-91yS7ROp0Q6vOVRRcaMR",
+      "usage": {
+        "input_tokens": 3394,
+        "output_tokens": 63,
+        "cost": 0.000142548
+      }
+    },
+    {
+      "case_id": "0oBIpbuVKg0",
+      "video_id": "0oBIpbuVKg0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/0oBIpbuVKg0.md",
+      "transcript_sha256": "746fefd47548a4b61cad2a901b1213767d3c6a4250dc5e08c791ea4f71ab829f",
+      "transcript_chars": 11050,
+      "reference": null,
+      "choice": "sales",
+      "match": null,
+      "probabilities": {
+        "offer": 0.11,
+        "retention": 0,
+        "focus": 0.04,
+        "leads": 0.01,
+        "sales": 0.77,
+        "people": 0.07
+      },
+      "confidence": 0.73,
+      "latency_seconds": 0.947,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-dKKgGO6syl1iUHT8ld5b",
+      "usage": {
+        "input_tokens": 3454,
+        "output_tokens": 63,
+        "cost": 0.000145068
+      }
+    },
+    {
+      "case_id": "ndne_8qRh8o",
+      "video_id": "ndne_8qRh8o",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/ndne_8qRh8o.md",
+      "transcript_sha256": "ca913d45e17718092d755b56512592fa8b47cc9b09085125dd0c3464bcc8d71c",
+      "transcript_chars": 8780,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "offer": 0.01,
+        "leads": 0,
+        "retention": 0,
+        "focus": 0.99,
+        "people": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 1.428,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-Zd27WgjSH7NUtIxTzwem",
+      "usage": {
+        "input_tokens": 2845,
+        "output_tokens": 63,
+        "cost": 0.00011949
+      }
+    },
+    {
+      "case_id": "EJyWvNfCeV0",
+      "video_id": "EJyWvNfCeV0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/EJyWvNfCeV0.md",
+      "transcript_sha256": "1ee1e477959af25cf53df31ad4f9e147e17d6d087d308f768084f1ab9c639686",
+      "transcript_chars": 5435,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "focus": 0.14,
+        "retention": 0,
+        "leads": 0.85,
+        "sales": 0,
+        "offer": 0.01
+      },
+      "confidence": 0.82,
+      "latency_seconds": 0.908,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-JxDF2qKFxe0YqjgQiUNm",
+      "usage": {
+        "input_tokens": 2030,
+        "output_tokens": 64,
+        "cost": 8.526e-05
+      }
+    },
+    {
+      "case_id": "HCAP5EWqMoc",
+      "video_id": "HCAP5EWqMoc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/HCAP5EWqMoc.md",
+      "transcript_sha256": "cddb0054d2ef2468b3054814cdbf4f5e60c34cf29fee3365db5b8a7815b8ed36",
+      "transcript_chars": 4310,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "people": 0.18,
+        "retention": 0,
+        "sales": 0,
+        "offer": 0.71,
+        "leads": 0,
+        "focus": 0.11
+      },
+      "confidence": 0.64,
+      "latency_seconds": 1.004,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-fCWJJzh4tAHh19tXyEbp",
+      "usage": {
+        "input_tokens": 1741,
+        "output_tokens": 63,
+        "cost": 7.3122e-05
+      }
+    },
+    {
+      "case_id": "ZZgB379SXu0",
+      "video_id": "ZZgB379SXu0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/ZZgB379SXu0.md",
+      "transcript_sha256": "ba8f647a0d338c1c5d1c7d1fcfb2e09ace7931ff7e43a737f060a01b51d8e65f",
+      "transcript_chars": 11930,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "sales": 0.06,
+        "people": 0.22,
+        "offer": 0,
+        "leads": 0.64,
+        "retention": 0,
+        "focus": 0.08
+      },
+      "confidence": 0.57,
+      "latency_seconds": 1.11,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-LfzBecKytaNm8DBsFIwj",
+      "usage": {
+        "input_tokens": 3672,
+        "output_tokens": 64,
+        "cost": 0.000154224
+      }
+    },
+    {
+      "case_id": "fsupOvPjW0U",
+      "video_id": "fsupOvPjW0U",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/fsupOvPjW0U.md",
+      "transcript_sha256": "80de73d2b94303dd5674807e06f5174336745e0b4f8ee577494d639a14fc1f6f",
+      "transcript_chars": 2897,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "offer": 0.16,
+        "sales": 0,
+        "focus": 0.01,
+        "people": 0,
+        "leads": 0.83,
+        "retention": 0
+      },
+      "confidence": 0.8,
+      "latency_seconds": 0.984,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-4sD2Dt0GSBJ76lZMd9hd",
+      "usage": {
+        "input_tokens": 1334,
+        "output_tokens": 64,
+        "cost": 5.6028e-05
+      }
+    },
+    {
+      "case_id": "grddZX9MLYg",
+      "video_id": "grddZX9MLYg",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/grddZX9MLYg.md",
+      "transcript_sha256": "f36704187a522770e02427a0a5069fe067cea3d13452eb4f5b9143ebcf4188f7",
+      "transcript_chars": 5225,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0,
+        "leads": 0.12,
+        "focus": 0.88,
+        "offer": 0,
+        "sales": 0
+      },
+      "confidence": 0.85,
+      "latency_seconds": 1.086,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-sGZDUmRH28X6pHvdfkKG",
+      "usage": {
+        "input_tokens": 1943,
+        "output_tokens": 63,
+        "cost": 8.1606e-05
+      }
+    },
+    {
+      "case_id": "XiikC131JO8",
+      "video_id": "XiikC131JO8",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/XiikC131JO8.md",
+      "transcript_sha256": "7bb96165d93dde4f8219848984f604347f913d8718f945e0e62a341c9e1f4ce8",
+      "transcript_chars": 9316,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "people": 0.97,
+        "focus": 0.01,
+        "offer": 0.01,
+        "leads": 0,
+        "retention": 0.01,
+        "sales": 0
+      },
+      "confidence": 0.97,
+      "latency_seconds": 1.159,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-xv6VADDNgRxpmEEwcHIs",
+      "usage": {
+        "input_tokens": 3096,
+        "output_tokens": 63,
+        "cost": 0.000130032
+      }
+    },
+    {
+      "case_id": "Cz-XFK_nM2Q",
+      "video_id": "Cz-XFK_nM2Q",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/Cz-XFK_nM2Q.md",
+      "transcript_sha256": "7f40ee31b9a753062b7cc14dded339518cef704bc33454ee6bfbfd188be7e38a",
+      "transcript_chars": 7937,
+      "reference": null,
+      "choice": "sales",
+      "match": null,
+      "probabilities": {
+        "people": 0.03,
+        "retention": 0,
+        "sales": 0.47,
+        "offer": 0,
+        "leads": 0.47,
+        "focus": 0.03
+      },
+      "confidence": 0.36,
+      "latency_seconds": 0.94,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-P7zGHPEbuZJ0WBbTQHVm",
+      "usage": {
+        "input_tokens": 2618,
+        "output_tokens": 63,
+        "cost": 0.000109956
+      }
+    },
+    {
+      "case_id": "pk00ZNDzycw",
+      "video_id": "pk00ZNDzycw",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/pk00ZNDzycw.md",
+      "transcript_sha256": "9f4eed3c90787d2904b99148edcb5d4de44356cf32e9379de9145b2f74a564d5",
+      "transcript_chars": 9295,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "focus": 0.01,
+        "retention": 0,
+        "sales": 0,
+        "offer": 0.01,
+        "people": 0.98,
+        "leads": 0
+      },
+      "confidence": 0.98,
+      "latency_seconds": 1.06,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-pjP9cnGaKq4kk5nNcqeA",
+      "usage": {
+        "input_tokens": 3080,
+        "output_tokens": 63,
+        "cost": 0.00012936
+      }
+    },
+    {
+      "case_id": "2Is-h74fklE",
+      "video_id": "2Is-h74fklE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/2Is-h74fklE.md",
+      "transcript_sha256": "3a2717021e91c6573a9bb106ad482a6d8fe81a78b82205671e7d8219bf927ae9",
+      "transcript_chars": 9321,
+      "reference": null,
+      "choice": "sales",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "sales": 0.73,
+        "retention": 0,
+        "offer": 0,
+        "focus": 0,
+        "people": 0.27
+      },
+      "confidence": 0.67,
+      "latency_seconds": 1.555,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-Qt3lL8cWF5LSaGDMrxrj",
+      "usage": {
+        "input_tokens": 3024,
+        "output_tokens": 63,
+        "cost": 0.000127008
+      }
+    },
+    {
+      "case_id": "c8PSSDdu4Cc",
+      "video_id": "c8PSSDdu4Cc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/c8PSSDdu4Cc.md",
+      "transcript_sha256": "4ffbc9f0cb897b41a5c61366118873b14fb65c19e8b42f303399889da00332e1",
+      "transcript_chars": 7722,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "offer": 0,
+        "sales": 0,
+        "people": 1,
+        "focus": 0,
+        "leads": 0,
+        "retention": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 2.299,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-fbPKqfj1DTsFDRpdegoF",
+      "usage": {
+        "input_tokens": 2647,
+        "output_tokens": 63,
+        "cost": 0.000111174
+      }
+    },
+    {
+      "case_id": "gaNkOL513jo",
+      "video_id": "gaNkOL513jo",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/gaNkOL513jo.md",
+      "transcript_sha256": "28d3725385beb004a942776539b58d9e696dbbb6a242634b34795762b8140643",
+      "transcript_chars": 8314,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "people": 0,
+        "leads": 1,
+        "offer": 0,
+        "retention": 0,
+        "focus": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.887,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-H1T5AF6jxBqxxnzxjZG4",
+      "usage": {
+        "input_tokens": 2718,
+        "output_tokens": 64,
+        "cost": 0.000114156
+      }
+    },
+    {
+      "case_id": "bdKVgkudo5A",
+      "video_id": "bdKVgkudo5A",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/bdKVgkudo5A.md",
+      "transcript_sha256": "990e99dec0277e0b035b27e86fa889624c3c9e233d8790d15d28e3148c2ba552",
+      "transcript_chars": 8158,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 1,
+        "leads": 0,
+        "focus": 0,
+        "sales": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.012,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-PTg3qYihgcT7q4xM2QvZ",
+      "usage": {
+        "input_tokens": 2730,
+        "output_tokens": 63,
+        "cost": 0.00011466
+      }
+    },
+    {
+      "case_id": "WXlPkw8_L8c",
+      "video_id": "WXlPkw8_L8c",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/WXlPkw8_L8c.md",
+      "transcript_sha256": "5dcb9e260607eaaeeb8476bdd6727b6c8fd40bafdb2d73315eeaf0338670cdbd",
+      "transcript_chars": 8318,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "retention": 0,
+        "people": 0,
+        "focus": 0,
+        "offer": 0,
+        "leads": 1
+      },
+      "confidence": 1,
+      "latency_seconds": 1.033,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-YswNiB9RpJaAzQJ5ws0i",
+      "usage": {
+        "input_tokens": 2709,
+        "output_tokens": 64,
+        "cost": 0.000113778
+      }
+    },
+    {
+      "case_id": "51wc-9y3TD4",
+      "video_id": "51wc-9y3TD4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/51wc-9y3TD4.md",
+      "transcript_sha256": "6735107cd8c1998b1e01eea77e4d5d0356ee17b10d6880f8705b674b62c1e843",
+      "transcript_chars": 15595,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "people": 0.17,
+        "leads": 0.81,
+        "retention": 0,
+        "offer": 0.01,
+        "focus": 0
+      },
+      "confidence": 0.78,
+      "latency_seconds": 1.181,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-tmnnHVCuA6aeemsNhkXZ",
+      "usage": {
+        "input_tokens": 4872,
+        "output_tokens": 64,
+        "cost": 0.000204624
+      }
+    },
+    {
+      "case_id": "PcTtGIWx1QY",
+      "video_id": "PcTtGIWx1QY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/PcTtGIWx1QY.md",
+      "transcript_sha256": "726b7050f1edcc0a9647a71a4874bdf9d9704849452c6db6b9e58fd538a1c494",
+      "transcript_chars": 8807,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "focus": 0,
+        "leads": 0.01,
+        "sales": 0,
+        "offer": 0.24,
+        "retention": 0,
+        "people": 0.75
+      },
+      "confidence": 0.69,
+      "latency_seconds": 0.977,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-9vCe6gq2VM4Jziz2GD3i",
+      "usage": {
+        "input_tokens": 2894,
+        "output_tokens": 63,
+        "cost": 0.000121548
+      }
+    },
+    {
+      "case_id": "_n0sLjXQ8qk",
+      "video_id": "_n0sLjXQ8qk",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/_n0sLjXQ8qk.md",
+      "transcript_sha256": "25cb16d4f180cdb3d3a1d66080b5c20780e5c3a7d8dd73c1db4a7e62cc71099e",
+      "transcript_chars": 10257,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "leads": 0.56,
+        "focus": 0.44,
+        "sales": 0,
+        "people": 0,
+        "retention": 0,
+        "offer": 0
+      },
+      "confidence": 0.46,
+      "latency_seconds": 1.015,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959982-11wo2yPIG7Nz1KR5QfO0",
+      "usage": {
+        "input_tokens": 3330,
+        "output_tokens": 64,
+        "cost": 0.00013986
+      }
+    },
+    {
+      "case_id": "IKRBA9ALc68",
+      "video_id": "IKRBA9ALc68",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/IKRBA9ALc68.md",
+      "transcript_sha256": "d8c9b8040a095acabc8ea32b3e9f83bc450b17029d4d8de780053cbbc1485ea8",
+      "transcript_chars": 10706,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "focus": 0.17,
+        "sales": 0,
+        "retention": 0,
+        "people": 0,
+        "leads": 0.8,
+        "offer": 0.03
+      },
+      "confidence": 0.77,
+      "latency_seconds": 1.036,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-pHsGY9UKaj1weFnQcxkT",
+      "usage": {
+        "input_tokens": 3395,
+        "output_tokens": 64,
+        "cost": 0.00014259
+      }
+    },
+    {
+      "case_id": "bHOR3aMRs1U",
+      "video_id": "bHOR3aMRs1U",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/bHOR3aMRs1U.md",
+      "transcript_sha256": "18697f76de9937f4d17ae5f3104aeaef1855761738aad53eeb582721529946ca",
+      "transcript_chars": 12832,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "retention": 0,
+        "offer": 0,
+        "sales": 0.05,
+        "people": 0.95,
+        "focus": 0
+      },
+      "confidence": 0.94,
+      "latency_seconds": 0.964,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-JfJg70xFI7cemopprV32",
+      "usage": {
+        "input_tokens": 3978,
+        "output_tokens": 63,
+        "cost": 0.000167076
+      }
+    },
+    {
+      "case_id": "k8-xbMrcUtA",
+      "video_id": "k8-xbMrcUtA",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/k8-xbMrcUtA.md",
+      "transcript_sha256": "9de7f59ef4a8ff8be3afcef190ae8d0fbe2121502b8809e2e04e85af0d9df7ce",
+      "transcript_chars": 14299,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "retention": 0,
+        "people": 1,
+        "offer": 0,
+        "focus": 0,
+        "leads": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.359,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-rJdlQ8lmO1qTXDWOMseC",
+      "usage": {
+        "input_tokens": 4280,
+        "output_tokens": 63,
+        "cost": 0.00017976
+      }
+    },
+    {
+      "case_id": "DiOVkIanOkQ",
+      "video_id": "DiOVkIanOkQ",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/DiOVkIanOkQ.md",
+      "transcript_sha256": "e43df17dcb71b5d2fcf5b06e423790b7a1044e1a3950987001593c02c73826a7",
+      "transcript_chars": 6212,
+      "reference": null,
+      "choice": "sales",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "focus": 0,
+        "retention": 0,
+        "leads": 0,
+        "offer": 0,
+        "sales": 1
+      },
+      "confidence": 1,
+      "latency_seconds": 0.939,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-AYEDxwusPLaixhnF3Cws",
+      "usage": {
+        "input_tokens": 2295,
+        "output_tokens": 63,
+        "cost": 9.639e-05
+      }
+    },
+    {
+      "case_id": "Q_IrTjdFNMc",
+      "video_id": "Q_IrTjdFNMc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/Q_IrTjdFNMc.md",
+      "transcript_sha256": "dcedb3a065649d623b098e031be3b636a0bd4e54cde545888fc3072279275f8a",
+      "transcript_chars": 12884,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.97,
+        "leads": 0.02,
+        "offer": 0,
+        "people": 0,
+        "sales": 0.01,
+        "retention": 0
+      },
+      "confidence": 0.96,
+      "latency_seconds": 0.969,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-WTX1xOJK18mieqi4mzGm",
+      "usage": {
+        "input_tokens": 3895,
+        "output_tokens": 63,
+        "cost": 0.00016359
+      }
+    },
+    {
+      "case_id": "EbcqyxLLWN4",
+      "video_id": "EbcqyxLLWN4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/EbcqyxLLWN4.md",
+      "transcript_sha256": "6728d114eb9e64781c0f8cd86f1dbef53af60c21d9a19d66167e681e865713a9",
+      "transcript_chars": 11006,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "focus": 0,
+        "leads": 0,
+        "sales": 0,
+        "offer": 0,
+        "retention": 0,
+        "people": 1
+      },
+      "confidence": 0.99,
+      "latency_seconds": 1.834,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-z6kjBDChtVkag66eSOUR",
+      "usage": {
+        "input_tokens": 3532,
+        "output_tokens": 63,
+        "cost": 0.000148344
+      }
+    },
+    {
+      "case_id": "pstJXCdpIio",
+      "video_id": "pstJXCdpIio",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/pstJXCdpIio.md",
+      "transcript_sha256": "0436dcb7ba443df57245a5c0dceb094b87e6cfe5f83c8cc3456a4c35b4e644da",
+      "transcript_chars": 11018,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "people": 1,
+        "sales": 0,
+        "offer": 0,
+        "retention": 0,
+        "focus": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 0.895,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-Rk4WnrCSSnLTl6krJz0j",
+      "usage": {
+        "input_tokens": 3517,
+        "output_tokens": 63,
+        "cost": 0.000147714
+      }
+    },
+    {
+      "case_id": "EiUW4sCi23s",
+      "video_id": "EiUW4sCi23s",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/EiUW4sCi23s.md",
+      "transcript_sha256": "ecd3151dc5aa75121374623cff96c3b40c54870bfef270e3fe0422459c4484f4",
+      "transcript_chars": 11090,
+      "reference": null,
+      "choice": "sales",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "retention": 0.08,
+        "sales": 0.65,
+        "offer": 0.26,
+        "leads": 0,
+        "focus": 0.01
+      },
+      "confidence": 0.57,
+      "latency_seconds": 0.916,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-Z1i6t2AcspCfl9RvDeUP",
+      "usage": {
+        "input_tokens": 3438,
+        "output_tokens": 63,
+        "cost": 0.000144396
+      }
+    },
+    {
+      "case_id": "lJ6jkoD5ApA",
+      "video_id": "lJ6jkoD5ApA",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/lJ6jkoD5ApA.md",
+      "transcript_sha256": "6c24ed0a68daa835288259d59bc08472411c19378101086c62f9ac96689f8c5a",
+      "transcript_chars": 15381,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.59,
+        "sales": 0,
+        "offer": 0.41,
+        "retention": 0,
+        "leads": 0,
+        "people": 0
+      },
+      "confidence": 0.5,
+      "latency_seconds": 1.495,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-opx0K44yB4dCoCYs28ji",
+      "usage": {
+        "input_tokens": 4537,
+        "output_tokens": 63,
+        "cost": 0.000190554
+      }
+    },
+    {
+      "case_id": "cvn8nPtLtfc",
+      "video_id": "cvn8nPtLtfc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/cvn8nPtLtfc.md",
+      "transcript_sha256": "6062449827e20b5e13f98dfa71046a7e880a7dc633a9fcde6d73c360625a426b",
+      "transcript_chars": 7941,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "offer": 0,
+        "people": 0.01,
+        "retention": 0.01,
+        "focus": 0.98,
+        "sales": 0
+      },
+      "confidence": 0.97,
+      "latency_seconds": 0.856,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-FPvaCYZWjZcsJQJEMkHo",
+      "usage": {
+        "input_tokens": 2668,
+        "output_tokens": 63,
+        "cost": 0.000112056
+      }
+    },
+    {
+      "case_id": "I1NYJ8dm4Jk",
+      "video_id": "I1NYJ8dm4Jk",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/I1NYJ8dm4Jk.md",
+      "transcript_sha256": "b2ac06f92475a280e4b98aa82a0854840f3a0a0a544923a4337b2ea77ef02a34",
+      "transcript_chars": 12185,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "focus": 0.36,
+        "offer": 0.52,
+        "leads": 0.01,
+        "people": 0.11,
+        "sales": 0,
+        "retention": 0
+      },
+      "confidence": 0.43,
+      "latency_seconds": 0.951,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-Vh6zL8JkPEcFnrRxZPlD",
+      "usage": {
+        "input_tokens": 3713,
+        "output_tokens": 63,
+        "cost": 0.000155946
+      }
+    },
+    {
+      "case_id": "MwU7mXoLfRM",
+      "video_id": "MwU7mXoLfRM",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/MwU7mXoLfRM.md",
+      "transcript_sha256": "53476da76cef3db0b49eb866bc8e2f6956e851cb69b32049de37018e986b647f",
+      "transcript_chars": 16402,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "people": 0.1,
+        "sales": 0.3,
+        "leads": 0.47,
+        "retention": 0,
+        "offer": 0.07,
+        "focus": 0.06
+      },
+      "confidence": 0.36,
+      "latency_seconds": 1.751,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-JFSrHJQ0qQU90HObwIZ9",
+      "usage": {
+        "input_tokens": 4792,
+        "output_tokens": 64,
+        "cost": 0.000201264
+      }
+    },
+    {
+      "case_id": "e-MnBsbgxeo",
+      "video_id": "e-MnBsbgxeo",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/e-MnBsbgxeo.md",
+      "transcript_sha256": "8c318f696318fa2e40d08728fec8355c5b752571957a3bd1f2742ba051465539",
+      "transcript_chars": 12180,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0,
+        "sales": 0,
+        "focus": 0,
+        "leads": 1,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.906,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-rY1oJQSxv4EQx6XdFQmo",
+      "usage": {
+        "input_tokens": 3907,
+        "output_tokens": 64,
+        "cost": 0.000164094
+      }
+    },
+    {
+      "case_id": "8TVWULd5a8M",
+      "video_id": "8TVWULd5a8M",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/8TVWULd5a8M.md",
+      "transcript_sha256": "2dbee392a6994bd91864f5deef25350fd6e811434a69d4fe22fa0e4eb3de6010",
+      "transcript_chars": 13458,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "offer": 0.02,
+        "sales": 0,
+        "retention": 0.11,
+        "leads": 0.02,
+        "focus": 0.85
+      },
+      "confidence": 0.83,
+      "latency_seconds": 1.279,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-akqnWx6Hv8ygyXhOVH4i",
+      "usage": {
+        "input_tokens": 4225,
+        "output_tokens": 63,
+        "cost": 0.00017745
+      }
+    },
+    {
+      "case_id": "ovfzNWcof_4",
+      "video_id": "ovfzNWcof_4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/ovfzNWcof_4.md",
+      "transcript_sha256": "b05b69b7af96df8439086277c765d925a88e2b62e54caeae84f6ee61fac9e478",
+      "transcript_chars": 12865,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "people": 0.99,
+        "sales": 0,
+        "leads": 0,
+        "retention": 0,
+        "focus": 0,
+        "offer": 0.01
+      },
+      "confidence": 0.99,
+      "latency_seconds": 1.534,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-xOZe9UcTHnjCUUg8wpNy",
+      "usage": {
+        "input_tokens": 3919,
+        "output_tokens": 63,
+        "cost": 0.000164598
+      }
+    },
+    {
+      "case_id": "hPV75vfqGXc",
+      "video_id": "hPV75vfqGXc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/hPV75vfqGXc.md",
+      "transcript_sha256": "642cb653727a57e6e9dd11a9065ab72645a66aa6bb0c071c94bfd4f83d491bb0",
+      "transcript_chars": 13887,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "focus": 0.01,
+        "offer": 0.59,
+        "sales": 0,
+        "leads": 0.39,
+        "retention": 0.01,
+        "people": 0
+      },
+      "confidence": 0.51,
+      "latency_seconds": 1.108,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-AHsm8FiPAAY4xZ1Yv79M",
+      "usage": {
+        "input_tokens": 4310,
+        "output_tokens": 63,
+        "cost": 0.00018102
+      }
+    },
+    {
+      "case_id": "vU3Uo1m_w2k",
+      "video_id": "vU3Uo1m_w2k",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/vU3Uo1m_w2k.md",
+      "transcript_sha256": "4a5b7a2f740e9f3a6461cb5fb484db3b08e74292f55b07d884088f03c2cb5a4a",
+      "transcript_chars": 13312,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "people": 0.99,
+        "sales": 0.01,
+        "retention": 0,
+        "focus": 0,
+        "offer": 0
+      },
+      "confidence": 0.98,
+      "latency_seconds": 1.619,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-XbKyMVyB9MRABJYiJOcD",
+      "usage": {
+        "input_tokens": 4089,
+        "output_tokens": 63,
+        "cost": 0.000171738
+      }
+    },
+    {
+      "case_id": "SHUE3z2Z5IY",
+      "video_id": "SHUE3z2Z5IY",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/SHUE3z2Z5IY.md",
+      "transcript_sha256": "2e819b49e1fcc25c6a24c48235397e5aa1d101e8742170c1a7946dc687958809",
+      "transcript_chars": 12421,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.61,
+        "retention": 0.02,
+        "leads": 0.33,
+        "people": 0.01,
+        "sales": 0.01,
+        "offer": 0.02
+      },
+      "confidence": 0.52,
+      "latency_seconds": 0.978,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-uzKwmX3fGfEUKF15IJmd",
+      "usage": {
+        "input_tokens": 3832,
+        "output_tokens": 63,
+        "cost": 0.000160944
+      }
+    },
+    {
+      "case_id": "PgohOZaYOpU",
+      "video_id": "PgohOZaYOpU",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/PgohOZaYOpU.md",
+      "transcript_sha256": "75c67deb10906651974a9f8e06c1e9a24ab24537d48942643ac0eedbeff1c3b2",
+      "transcript_chars": 10390,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "offer": 0,
+        "people": 0,
+        "focus": 0.31,
+        "retention": 0,
+        "sales": 0,
+        "leads": 0.69
+      },
+      "confidence": 0.63,
+      "latency_seconds": 0.974,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-x3Ai8QOFbt1vQJv2ELeT",
+      "usage": {
+        "input_tokens": 3246,
+        "output_tokens": 64,
+        "cost": 0.000136332
+      }
+    },
+    {
+      "case_id": "XMh09JEjU_I",
+      "video_id": "XMh09JEjU_I",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/XMh09JEjU_I.md",
+      "transcript_sha256": "f7fd4804093e145ac4e6c22ad24ce05ba3cf3d525ecb0eee6a800cf9d6cd3598",
+      "transcript_chars": 9128,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "offer": 0.39,
+        "sales": 0.01,
+        "people": 0,
+        "leads": 0.25,
+        "focus": 0.07,
+        "retention": 0.28
+      },
+      "confidence": 0.26,
+      "latency_seconds": 0.936,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-cTjxi32oKKxHgLdO8nKI",
+      "usage": {
+        "input_tokens": 2880,
+        "output_tokens": 63,
+        "cost": 0.00012096
+      }
+    },
+    {
+      "case_id": "X_EDIO-6iO0",
+      "video_id": "X_EDIO-6iO0",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/X_EDIO-6iO0.md",
+      "transcript_sha256": "234f595293a514673952752a71642dc8a4dd5ca997328db202ed50125523a012",
+      "transcript_chars": 10379,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 1,
+        "leads": 0,
+        "focus": 0,
+        "sales": 0,
+        "offer": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 1.233,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-D4vikTbSDDYrx7y2IBID",
+      "usage": {
+        "input_tokens": 3322,
+        "output_tokens": 63,
+        "cost": 0.000139524
+      }
+    },
+    {
+      "case_id": "dmJopOfu3zE",
+      "video_id": "dmJopOfu3zE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/dmJopOfu3zE.md",
+      "transcript_sha256": "46b87ab08a9b33c026bdd3f3bcdc0bd4479f4f697bc04fe38fa1a3a46fc7f54d",
+      "transcript_chars": 5651,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "leads": 0.94,
+        "sales": 0,
+        "focus": 0.06,
+        "people": 0,
+        "offer": 0
+      },
+      "confidence": 0.93,
+      "latency_seconds": 1.072,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-VKD5QNexZEpm6OrRBRuC",
+      "usage": {
+        "input_tokens": 2057,
+        "output_tokens": 64,
+        "cost": 8.6394e-05
+      }
+    },
+    {
+      "case_id": "JT3bePK2ens",
+      "video_id": "JT3bePK2ens",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/JT3bePK2ens.md",
+      "transcript_sha256": "2e83ca98f678c4463bc0cc7853bffce3a770bf366d8a28a2d3a7ab0e6e1e02ea",
+      "transcript_chars": 4001,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "leads": 0,
+        "focus": 0,
+        "offer": 0.86,
+        "sales": 0.01,
+        "retention": 0,
+        "people": 0.13
+      },
+      "confidence": 0.83,
+      "latency_seconds": 0.859,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-g9YIjvxT0QnneDUEHDR5",
+      "usage": {
+        "input_tokens": 1580,
+        "output_tokens": 63,
+        "cost": 6.636e-05
+      }
+    },
+    {
+      "case_id": "9iYbOuQd1eE",
+      "video_id": "9iYbOuQd1eE",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/9iYbOuQd1eE.md",
+      "transcript_sha256": "883e2f4f4f027961d5c73d316e60a9756923337af78acf61e5385f8c3db12572",
+      "transcript_chars": 6849,
+      "reference": null,
+      "choice": "retention",
+      "match": null,
+      "probabilities": {
+        "retention": 0.91,
+        "leads": 0.01,
+        "offer": 0,
+        "people": 0,
+        "sales": 0.07,
+        "focus": 0.01
+      },
+      "confidence": 0.89,
+      "latency_seconds": 1.471,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-vCkLWWjEZX4ubsQOeXGn",
+      "usage": {
+        "input_tokens": 2372,
+        "output_tokens": 65,
+        "cost": 9.9624e-05
+      }
+    },
+    {
+      "case_id": "zydvAjhEKBA",
+      "video_id": "zydvAjhEKBA",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/zydvAjhEKBA.md",
+      "transcript_sha256": "44cc33ab3eb3d266e5b49090097fdd3a1600ae697c8912d2c3c887b67557a4bf",
+      "transcript_chars": 12064,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 1,
+        "sales": 0,
+        "focus": 0,
+        "leads": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.992,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-Bc66zqMXG5XowRuesoup",
+      "usage": {
+        "input_tokens": 3650,
+        "output_tokens": 63,
+        "cost": 0.0001533
+      }
+    },
+    {
+      "case_id": "KCN3v3cjwvw",
+      "video_id": "KCN3v3cjwvw",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/KCN3v3cjwvw.md",
+      "transcript_sha256": "aabe4226093b32a9b21acc22e2d60a2f28ce99c7112ac7a86f84872df2dc058f",
+      "transcript_chars": 5710,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "leads": 0,
+        "offer": 0.8,
+        "sales": 0.2,
+        "focus": 0,
+        "retention": 0
+      },
+      "confidence": 0.75,
+      "latency_seconds": 0.907,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-BtyFwvLO4oGg0goSt3Ze",
+      "usage": {
+        "input_tokens": 2167,
+        "output_tokens": 63,
+        "cost": 9.1014e-05
+      }
+    },
+    {
+      "case_id": "R2qzM-0gmec",
+      "video_id": "R2qzM-0gmec",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/R2qzM-0gmec.md",
+      "transcript_sha256": "6e9035aba3a530ee06c82dd779fc8e970543696703fd158765d131f6627ac65d",
+      "transcript_chars": 7823,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "focus": 0.02,
+        "offer": 0.81,
+        "sales": 0.16,
+        "leads": 0,
+        "retention": 0,
+        "people": 0.01
+      },
+      "confidence": 0.77,
+      "latency_seconds": 0.972,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-EEL1WMbmbGyMZXL14hYu",
+      "usage": {
+        "input_tokens": 2600,
+        "output_tokens": 63,
+        "cost": 0.0001092
+      }
+    },
+    {
+      "case_id": "KUZ9PbqilNs",
+      "video_id": "KUZ9PbqilNs",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/KUZ9PbqilNs.md",
+      "transcript_sha256": "ce3abdbfb2cadb291e7e9c845ac12f2cf6b2e1c4c8f468382c76e66a7364d397",
+      "transcript_chars": 9420,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "leads": 0.94,
+        "sales": 0,
+        "offer": 0,
+        "retention": 0,
+        "focus": 0.06
+      },
+      "confidence": 0.93,
+      "latency_seconds": 0.928,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-Smq2MmvOZFgWAUI3wSfP",
+      "usage": {
+        "input_tokens": 2933,
+        "output_tokens": 64,
+        "cost": 0.000123186
+      }
+    },
+    {
+      "case_id": "fOPhKzYZPGU",
+      "video_id": "fOPhKzYZPGU",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/fOPhKzYZPGU.md",
+      "transcript_sha256": "bce65e899fa6970f4707ddf28f5aaf6ac1f9c6a76bbef2cb5bafa328b413cbee",
+      "transcript_chars": 5481,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.41,
+        "sales": 0.05,
+        "offer": 0.11,
+        "retention": 0.36,
+        "leads": 0.01,
+        "people": 0.06
+      },
+      "confidence": 0.29,
+      "latency_seconds": 0.899,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-6vCPuqAaiLj5j0Cxh7NN",
+      "usage": {
+        "input_tokens": 2024,
+        "output_tokens": 63,
+        "cost": 8.5008e-05
+      }
+    },
+    {
+      "case_id": "LtSWOAuKjG4",
+      "video_id": "LtSWOAuKjG4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/LtSWOAuKjG4.md",
+      "transcript_sha256": "dab6b04181a968a2fe49bbe4b43f8bab002ce9a3f18603ecdb7e61b582666bc4",
+      "transcript_chars": 8484,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.62,
+        "sales": 0,
+        "offer": 0,
+        "people": 0,
+        "leads": 0.38,
+        "retention": 0
+      },
+      "confidence": 0.54,
+      "latency_seconds": 0.755,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-8SFItC5D7HEZtyFPdpsl",
+      "usage": {
+        "input_tokens": 2839,
+        "output_tokens": 63,
+        "cost": 0.000119238
+      }
+    },
+    {
+      "case_id": "LrsUgepHc3Y",
+      "video_id": "LrsUgepHc3Y",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/LrsUgepHc3Y.md",
+      "transcript_sha256": "109d13de95bc05cbb4f59377d11ff97d04f40d5b5f4fb42c6973651196253d8e",
+      "transcript_chars": 10240,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "leads": 0.8200000000000001,
+        "offer": 0,
+        "focus": 0.18,
+        "retention": 0,
+        "people": 0,
+        "sales": 0
+      },
+      "confidence": 0.77,
+      "latency_seconds": 0.77,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-XoLP1enuZvUVGVCtJyQL",
+      "usage": {
+        "input_tokens": 3204,
+        "output_tokens": 64,
+        "cost": 0.000134568
+      }
+    },
+    {
+      "case_id": "qXZjagpxxig",
+      "video_id": "qXZjagpxxig",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/qXZjagpxxig.md",
+      "transcript_sha256": "a3b07663b76ee9dfc46150f6fe0797ac4e25433ec55a83ccda794cff8e6bcea0",
+      "transcript_chars": 6957,
+      "reference": null,
+      "choice": "retention",
+      "match": null,
+      "probabilities": {
+        "offer": 0,
+        "people": 0,
+        "sales": 0,
+        "leads": 0,
+        "retention": 1,
+        "focus": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 1.238,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-pV3ZBrcvpdTQHoSPDmCP",
+      "usage": {
+        "input_tokens": 2376,
+        "output_tokens": 65,
+        "cost": 9.9792e-05
+      }
+    },
+    {
+      "case_id": "OyIYsKzPBHw",
+      "video_id": "OyIYsKzPBHw",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/OyIYsKzPBHw.md",
+      "transcript_sha256": "00d8d7a8cf0ef99b2009d67814de83b8c7c4765f411a4c708f0d2ad301c4b0b4",
+      "transcript_chars": 9493,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "leads": 0.18,
+        "sales": 0,
+        "retention": 0,
+        "focus": 0.08,
+        "people": 0.74,
+        "offer": 0
+      },
+      "confidence": 0.68,
+      "latency_seconds": 0.722,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959983-DTWGVPywxUrefGosYP7Y",
+      "usage": {
+        "input_tokens": 3096,
+        "output_tokens": 63,
+        "cost": 0.000130032
+      }
+    },
+    {
+      "case_id": "uMgNfgPPMCQ",
+      "video_id": "uMgNfgPPMCQ",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/uMgNfgPPMCQ.md",
+      "transcript_sha256": "1936d8d3f9203ec96b52f487ae2fdc066e8ad3e5de8d6cd0884171b69b8384f6",
+      "transcript_chars": 6384,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "offer": 0,
+        "focus": 0.97,
+        "retention": 0,
+        "people": 0,
+        "leads": 0.03,
+        "sales": 0
+      },
+      "confidence": 0.96,
+      "latency_seconds": 1.236,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-9KtgX0G5w4s0oxWbzu6H",
+      "usage": {
+        "input_tokens": 2166,
+        "output_tokens": 63,
+        "cost": 9.0972e-05
+      }
+    },
+    {
+      "case_id": "hyfJiJG9pd4",
+      "video_id": "hyfJiJG9pd4",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/hyfJiJG9pd4.md",
+      "transcript_sha256": "0538f01691b770dd904cfc580b0e188d5c43520fde72e8faa9b4bb0400f64b07",
+      "transcript_chars": 5432,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 0.82,
+        "sales": 0,
+        "offer": 0.17,
+        "people": 0.01,
+        "leads": 0,
+        "retention": 0
+      },
+      "confidence": 0.78,
+      "latency_seconds": 0.72,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-m8g23xHQg1wx8e8Pab2b",
+      "usage": {
+        "input_tokens": 2016,
+        "output_tokens": 63,
+        "cost": 8.4672e-05
+      }
+    },
+    {
+      "case_id": "rzPZJ7O9iao",
+      "video_id": "rzPZJ7O9iao",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/rzPZJ7O9iao.md",
+      "transcript_sha256": "eaa7a7fd262f4c5df3ee107cfe13dddf09a47d8579a98631f150f1076fb209c3",
+      "transcript_chars": 8978,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0,
+        "focus": 0,
+        "sales": 0,
+        "leads": 0.99,
+        "offer": 0.01
+      },
+      "confidence": 0.99,
+      "latency_seconds": 0.915,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-Sx4zrNLZ4AcAm7gNhiyv",
+      "usage": {
+        "input_tokens": 2917,
+        "output_tokens": 64,
+        "cost": 0.000122514
+      }
+    },
+    {
+      "case_id": "1aGbrnRQcbc",
+      "video_id": "1aGbrnRQcbc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/1aGbrnRQcbc.md",
+      "transcript_sha256": "52d1bf52bc3a598969b96ba993e840c5816468a7b7805753d792b1db4837603f",
+      "transcript_chars": 13287,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "people": 0.07,
+        "leads": 0,
+        "focus": 0,
+        "sales": 0,
+        "offer": 0.93
+      },
+      "confidence": 0.91,
+      "latency_seconds": 0.818,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-FZH4rbOxisEILbLGrssb",
+      "usage": {
+        "input_tokens": 4008,
+        "output_tokens": 63,
+        "cost": 0.000168336
+      }
+    },
+    {
+      "case_id": "2S6Qcpad2Fo",
+      "video_id": "2S6Qcpad2Fo",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/2S6Qcpad2Fo.md",
+      "transcript_sha256": "b58e566baebc0322c5fc173d28b3a50051de255f00fff7a7c834d093a72835e3",
+      "transcript_chars": 6887,
+      "reference": null,
+      "choice": "retention",
+      "match": null,
+      "probabilities": {
+        "focus": 0,
+        "people": 0,
+        "retention": 1,
+        "sales": 0,
+        "leads": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.669,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-bqzP7HNUo6KE68IeZfri",
+      "usage": {
+        "input_tokens": 2337,
+        "output_tokens": 65,
+        "cost": 9.8154e-05
+      }
+    },
+    {
+      "case_id": "TH0v1BpsgeQ",
+      "video_id": "TH0v1BpsgeQ",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/TH0v1BpsgeQ.md",
+      "transcript_sha256": "446794a0f5cdef166bc3512c120b29beaa7e254d17660396190473ad5de80fe6",
+      "transcript_chars": 5189,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "focus": 0.19,
+        "people": 0.34,
+        "leads": 0,
+        "offer": 0.47,
+        "sales": 0
+      },
+      "confidence": 0.36,
+      "latency_seconds": 2.132,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959985-UiUitI0RPzD3Fbalofnx",
+      "usage": {
+        "input_tokens": 1911,
+        "output_tokens": 63,
+        "cost": 8.0262e-05
+      }
+    },
+    {
+      "case_id": "xKA-sxrumEA",
+      "video_id": "xKA-sxrumEA",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/xKA-sxrumEA.md",
+      "transcript_sha256": "645b420bc5dc9c70912dd1804bda762414c09246e3f28e29d2c665c4593d0815",
+      "transcript_chars": 5900,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "people": 0,
+        "leads": 0,
+        "offer": 0,
+        "retention": 0,
+        "focus": 1,
+        "sales": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 0.795,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-9lskFjVfZuYjce0Wo4Oq",
+      "usage": {
+        "input_tokens": 2115,
+        "output_tokens": 63,
+        "cost": 8.883e-05
+      }
+    },
+    {
+      "case_id": "18By5rofTbc",
+      "video_id": "18By5rofTbc",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/18By5rofTbc.md",
+      "transcript_sha256": "26198d9211a4e05ac4f0cde157705242964540eadb33bac56f2166bf4be9976c",
+      "transcript_chars": 8860,
+      "reference": null,
+      "choice": "leads",
+      "match": null,
+      "probabilities": {
+        "retention": 0,
+        "offer": 0.18,
+        "leads": 0.81,
+        "people": 0,
+        "sales": 0,
+        "focus": 0.01
+      },
+      "confidence": 0.77,
+      "latency_seconds": 0.686,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-1F1AwhimeHeMESfn0puy",
+      "usage": {
+        "input_tokens": 2785,
+        "output_tokens": 64,
+        "cost": 0.00011697
+      }
+    },
+    {
+      "case_id": "p9cdjGxyvtk",
+      "video_id": "p9cdjGxyvtk",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/p9cdjGxyvtk.md",
+      "transcript_sha256": "c2641a58b4de84c705a86a60e6db82cea97554de639e14f466af89d477654425",
+      "transcript_chars": 6191,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "leads": 0.03,
+        "offer": 0.95,
+        "focus": 0,
+        "retention": 0.02,
+        "people": 0,
+        "sales": 0
+      },
+      "confidence": 0.94,
+      "latency_seconds": 0.662,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-Hp2iJ5HjhpjJwRkyVyh4",
+      "usage": {
+        "input_tokens": 2279,
+        "output_tokens": 63,
+        "cost": 9.5718e-05
+      }
+    },
+    {
+      "case_id": "b7jhejS05QU",
+      "video_id": "b7jhejS05QU",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/b7jhejS05QU.md",
+      "transcript_sha256": "2c4f9645faddef3ee3c0f7d40e4906107f1920f367bf3b09e4166409e7cb3eb7",
+      "transcript_chars": 8823,
+      "reference": null,
+      "choice": "offer",
+      "match": null,
+      "probabilities": {
+        "sales": 0.01,
+        "leads": 0,
+        "focus": 0,
+        "offer": 0.99,
+        "retention": 0,
+        "people": 0
+      },
+      "confidence": 0.99,
+      "latency_seconds": 0.732,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-WraIHJUvBDsGgAZRGyuh",
+      "usage": {
+        "input_tokens": 2827,
+        "output_tokens": 63,
+        "cost": 0.000118734
+      }
+    },
+    {
+      "case_id": "_FI7RVlWSwo",
+      "video_id": "_FI7RVlWSwo",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/_FI7RVlWSwo.md",
+      "transcript_sha256": "3f1879040f499dceb2b6a66795a008abcab0ff1f7bc67c49cc9d7a686348255a",
+      "transcript_chars": 5701,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "sales": 0,
+        "offer": 0,
+        "retention": 0.03,
+        "leads": 0,
+        "focus": 0.08,
+        "people": 0.89
+      },
+      "confidence": 0.87,
+      "latency_seconds": 0.614,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-h7Brjztcz8tXalWRf9DO",
+      "usage": {
+        "input_tokens": 2044,
+        "output_tokens": 63,
+        "cost": 8.5848e-05
+      }
+    },
+    {
+      "case_id": "nPXvRghjNsQ",
+      "video_id": "nPXvRghjNsQ",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/nPXvRghjNsQ.md",
+      "transcript_sha256": "997685ee58b1415fd19b4bf93556ad35d60f51187b35ab7b6f240a7ebeb869b7",
+      "transcript_chars": 8506,
+      "reference": null,
+      "choice": "people",
+      "match": null,
+      "probabilities": {
+        "leads": 0.01,
+        "focus": 0.05,
+        "offer": 0,
+        "sales": 0.02,
+        "retention": 0,
+        "people": 0.92
+      },
+      "confidence": 0.91,
+      "latency_seconds": 0.711,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-IdJDiWPJjkzdabiS7QTv",
+      "usage": {
+        "input_tokens": 2778,
+        "output_tokens": 63,
+        "cost": 0.000116676
+      }
+    },
+    {
+      "case_id": "IOhDCr0x14Y",
+      "video_id": "IOhDCr0x14Y",
+      "transcript_url": "https://github.com/poseljacob/ask-hormozi/blob/main/corpus/transcripts/IOhDCr0x14Y.md",
+      "transcript_sha256": "2ceaa11f69e319f57b6c498669168cc78c032c7daa37c35278713fb57f4a9cac",
+      "transcript_chars": 7392,
+      "reference": null,
+      "choice": "focus",
+      "match": null,
+      "probabilities": {
+        "focus": 1,
+        "retention": 0,
+        "people": 0,
+        "sales": 0,
+        "leads": 0,
+        "offer": 0
+      },
+      "confidence": 1,
+      "latency_seconds": 0.962,
+      "resolved_model": "typesafe/jev-1.13-20260917",
+      "response_id": "gen-dec-1790959984-tZoWyWag10ZqHjmcGLnn",
+      "usage": {
+        "input_tokens": 2479,
+        "output_tokens": 63,
+        "cost": 0.000104118
+      }
+    }
+  ],
+  "reference_count": 10,
+  "matches": 8,
+  "total_cost_usd": 0.01250222
+}
