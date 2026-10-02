@@ -163,7 +163,7 @@ function renderProgress() {
   byId('baseline-match-detail').textContent = paired.length ? `${matches} / ${paired.length} cases match` : 'Awaiting paired classifications';
   byId('runtime-status').textContent = active
     ? ''
-    : errorMessage || (report ? '' : `Ready to classify ${total.toLocaleString()} complete transcripts.`);
+    : errorMessage || '';
 }
 function render() {
   if (!manifest || !spec) return;

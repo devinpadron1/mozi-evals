@@ -15,13 +15,13 @@
   <main>
     <section id="panel-classify" role="tabpanel" aria-labelledby="tab-classify">
       <section class="intro" aria-labelledby="page-title">
-        <div class="heading"><div><p class="eyebrow">500 MoreMozi videos</p><h1 id="page-title">Constraint Classifier</h1><p class="intro-copy">One transcript in, one business constraint out. Runtime classification is active; Sol 6.1 provides the baseline.</p></div></div>
+        <div class="heading"><div><p class="eyebrow">500 MoreMozi videos</p><h1 id="page-title">Constraint Classifier</h1><p class="intro-copy">One transcript in, one business constraint out. Runtime classification with <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noopener noreferrer">Jev</a> is active; <a href="https://openai.com/index/introducing-gpt-6-1-sol/" target="_blank" rel="noopener noreferrer">Sol 6.1</a> provides the baseline.</p></div></div>
         <figure class="flow-figure"><img src="jev-sol-classification-flow.png?v=3" alt="A MoreMozi transcript video flows into Jev at runtime and Sol 6.1 as the baseline, producing one of six constraints: Focus, Leads, Sales, Offer, Retention, or People."></figure>
       </section>
 
       <section class="runtime" aria-label="Live classification run">
         <div class="runtime-grid">
-          <div class="runtime-top"><div class="runtime-controls"><p id="runtime-status" role="status">Ready to classify 500 complete transcripts.</p></div></div>
+          <div class="runtime-top"><div class="runtime-controls"><p id="runtime-status" role="status"></p></div></div>
           <div id="progress-track" class="progress-track" role="progressbar" aria-label="Transcript classifications complete" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0"><div id="progress-fill" class="progress-fill"></div></div>
           <div class="runtime-bottom">
             <strong id="progress-count">0 / 500 complete</strong>
