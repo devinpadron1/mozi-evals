@@ -70,6 +70,9 @@ function renderCases() {
   const results = new Map(currentResults().map(result => [result.case_id, result]));
   const baselines = new Map(currentBaselineResults().map(result => [result.case_id, result]));
   for (const [index, item] of manifest.cases.entries()) {
+    const baseline = baselines.get(item.id);
+    const result = results.get(item.id);
+    if (!baseline && !result) continue;
     const row = make('tr');
     const video = make('td', 'video-cell');
     const videoContent = make('div', 'video-content');
@@ -83,7 +86,6 @@ function renderCases() {
     videoContent.append(description);
     video.append(videoContent);
     const baselineCell = make('td', 'classification-cell');
-    const baseline = baselines.get(item.id);
     if (baseline) {
       const value = make('div', 'constraint-result ' + baseline.choice);
       value.title = baseline.basis || '';
@@ -91,7 +93,6 @@ function renderCases() {
       baselineCell.append(value);
     } else baselineCell.append(make('span', 'queued', baselineProgress?.status === 'running' ? 'Waiting' : '—'));
     const classification = make('td', 'classification-cell');
-    const result = results.get(item.id);
     if (result) {
       const label = result.choice;
       const value = make('div', 'constraint-result ' + label);
@@ -130,7 +131,7 @@ function renderCases() {
     row.append(video, baselineCell, classification);
     body.append(row);
   }
-  byId('results-summary').textContent = `${results.size} / ${manifest.cases.length}`;
+  byId('results-summary').textContent = `${baselines.size} / ${manifest.cases.length}`;
 }
 function formatDuration(seconds) {
   const total = Math.max(0, Math.floor(Number(seconds) || 0));
@@ -146,14 +147,12 @@ function elapsedSeconds() {
 }
 function renderProgress() {
   const total = manifest?.cases.length || 500;
-  const live = active || progress?.status === 'failed';
-  const finished = Math.min(total, Number(live ? progress?.finished : report?.results.length ?? progress?.finished ?? 0));
-  const complete = Math.min(total, Number(live ? progress?.completed : report?.results.length ?? progress?.completed ?? 0));
-  const cost = Number(live ? progress?.total_cost_usd : report?.total_cost_usd ?? progress?.total_cost_usd ?? 0);
-  const fraction = total ? finished / total : 0;
+  const baselineCount = Math.min(total, currentBaselineResults().length);
+  const fraction = total ? baselineCount / total : 0;
+  const cost = Number(active || progress?.status === 'failed' ? progress?.total_cost_usd : report?.total_cost_usd ?? progress?.total_cost_usd ?? 0);
   byId('progress-fill').style.width = `${(fraction * 100).toFixed(1)}%`;
-  byId('progress-track').setAttribute('aria-valuenow', String(Math.round(fraction * 100)));
-  byId('progress-count').textContent = `${complete} / ${total} complete${progress?.failed ? ` · ${progress.failed} failed` : ''}`;
+  byId('progress-track').setAttribute('aria-valuenow', String(baselineCount));
+  byId('progress-count').textContent = `${baselineCount} / ${total} complete`;
   byId('elapsed-time').textContent = formatDuration(elapsedSeconds());
   byId('api-cost').textContent = '$' + (Number.isFinite(cost) ? cost.toFixed(4) : '0.0000');
   const jevByCase = new Map(currentResults().map(result => [result.case_id, result]));

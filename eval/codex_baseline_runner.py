@@ -22,6 +22,7 @@ REPORT = ROOT / 'dist' / 'baseline_report.json'
 PROGRESS = ROOT / '.eval-runs' / 'baseline-progress.json'
 ARCHIVE = ROOT / '.eval-runs' / 'baseline-runs'
 OPENROUTER_ARCHIVE = ROOT / '.eval-runs' / 'openrouter-baseline-partials'
+CODEX_PARTIAL_ARCHIVE = ROOT / '.eval-runs' / 'codex-baseline-partials'
 SCHEMA = ROOT / '.eval-runs' / 'baseline-output-schema.json'
 CODEX = os.getenv('CODEX_BIN', '/opt/homebrew/bin/codex')
 MODEL = 'gpt-6.1-sol'
@@ -107,11 +108,13 @@ def main():
     finished = 0
     total_tokens = 0
 
-    # Resume only our own failed Codex run. Keep other providers' saved runs intact.
+    legacy_results = {}
+    legacy_path = OPENROUTER_ARCHIVE / 'openrouter-partial-dbb42c39-236e-4bcc-8e41-99aa18ee313c.json'
+    # Resume our own failed Codex run only when dataset and prompt versions match.
     if PROGRESS.is_file():
         try:
             previous = read_json(PROGRESS)
-            if (previous.get('provider') == 'Codex' and previous.get('status') == 'failed'
+            if (previous.get('codex_run') is True and previous.get('status') in {'failed', 'paused'}
                     and previous.get('dataset_version') == manifest['dataset_version']
                     and previous.get('spec_version') == spec['version']):
                 run_id = previous['run_id']
@@ -120,28 +123,30 @@ def main():
                 results.update({r['case_id']: r for r in previous.get('results', [])})
                 finished = len(results)
                 total_tokens = sum(r.get('tokens_used') or 0 for r in results.values())
+            elif previous.get('provider') == 'Codex':
+                CODEX_PARTIAL_ARCHIVE.mkdir(parents=True, exist_ok=True)
+                write_atomic(CODEX_PARTIAL_ARCHIVE / f"{previous.get('run_id', 'superseded')}.json", previous)
         except (OSError, ValueError, KeyError, TypeError):
             pass
-    else:
-        # Retain the earlier OpenRouter partial run, but never blend it into this Codex baseline.
-        legacy = ROOT / '.eval-runs' / 'aborted-openrouter-baseline-dbb42c39-236e-4bcc-8e41-99aa18ee313c.json'
-        if legacy.is_file():
-            OPENROUTER_ARCHIVE.mkdir(parents=True, exist_ok=True)
-            target = OPENROUTER_ARCHIVE / legacy.name
-            if not target.exists():
-                shutil.copy2(legacy, target)
+    if not results and legacy_path.is_file():
+        prior = read_json(legacy_path)
+        valid_ids = {case['id'] for case in cases}
+        legacy_results = {row['case_id']: {**row, 'provider': 'OpenRouter'}
+                          for row in prior.get('results', []) if row.get('case_id') in valid_ids}
+        results.update(legacy_results)
+        finished = len(results)
 
     pending = [case for case in cases if case['id'] not in results]
     schema_path = SCHEMA
     write_atomic(schema_path, output_schema(labels))
-    cwd = ROOT / '.eval-runs' / 'codex-isolated-cwd'
-    cwd.mkdir(parents=True, exist_ok=True)
+    cwd = ROOT
     lock = threading.Lock()
 
     def write_progress(status='running'):
         ordered = [results[case['id']] for case in cases if case['id'] in results]
         write_atomic(PROGRESS, {
-            'status': status, 'provider': 'Codex', 'model': MODEL, 'run_id': run_id,
+            'status': status, 'provider': 'Codex + retained OpenRouter results', 'model': MODEL, 'run_id': run_id,
+            'codex_run': True,
             'dataset_version': manifest['dataset_version'], 'spec_version': spec['version'],
             'started_at': started_at, 'created_at': created_at,
             'elapsed_seconds': round(time.time() - started_at, 2), 'total': len(cases),
@@ -177,7 +182,7 @@ def main():
     ordered = [results[case['id']] for case in cases]
     report = {
         'schema_version': 1, 'run_id': run_id, 'created_at': created_at,
-        'provider': 'Codex', 'model': MODEL, 'dataset_version': manifest['dataset_version'],
+        'provider': 'Codex + retained OpenRouter results', 'model': MODEL, 'dataset_version': manifest['dataset_version'],
         'spec_version': spec['version'], 'system_prompt_sha256': hashlib.sha256(spec['system_prompt'].encode()).hexdigest(),
         'question': spec['question'], 'criteria': spec['criteria'], 'taxonomy': labels,
         'session_policy': spec['session_policy'], 'input_kind': 'complete automatic-caption Markdown, with a recognized promotional outro removed when present',

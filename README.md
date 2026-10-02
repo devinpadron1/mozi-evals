@@ -1,6 +1,6 @@
 # Mozi Evals
 
-Classify the primary business constraint in a complete MoreMozi transcript. Jev labels 500 videos; GPT-6.1 Sol provides a baseline. The six labels are Focus, Leads, Sales, Offer, Retention, and People.
+Classify the primary business constraint in a complete MoreMozi transcript. Jev labels 500 videos; GPT-6.1 Sol provides the baseline. The six labels are Focus, Leads, Sales, Offer, Retention, and People.
 
 ![A MoreMozi transcript is classified by Jev and Sol into one of six business constraints](dist/jev-sol-classification-flow.png)
 
@@ -44,4 +44,4 @@ Each transcript gets an isolated Codex session. Progress and session details are
 
 ## Data and references
 
-The 500-video set keeps 100 curated cases and adds the 400 highest-scoring transcripts from Jev's screening of the 2,039-video corpus. Selection metadata and screening scores are in `dist/manifest.json` and `dist/advice_screen_report.json`. The 10 hand-labeled reference cases are unchanged; other labels are not provided as ground truth.
+The 500-video set keeps 100 curated cases and adds the 400 highest-scoring screened cases. Selection metadata and scores are in `dist/manifest.json` and `dist/advice_screen_report.json`. The 10 hand-labeled reference cases are unchanged; other labels are not provided as ground truth.

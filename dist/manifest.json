@@ -12847,11 +12847,12 @@
     "screen_question": "Does this transcript contain substantive, actionable advice for someone running, growing, or fixing a business? Include one-to-one coaching, business Q&A, and educational material that gives concrete guidance applicable to a business. Exclude announcements, entertainment, personal life, motivation without business guidance, and interviews without useful business advice.",
     "screen_threshold": 0.8,
     "screen_snapshot_commit": "c3380be116ee134c029038d7a785a1e34f5d07a7",
-    "selection_rule": "Retain the existing 100 curated cases, then include the 400 highest-scoring remaining transcripts.",
+    "selection_rule": "Retain the existing 100 curated cases, then include the 400 highest-scoring other videos.",
     "screened_transcripts": 2039,
     "screened_at_or_above_threshold": 1018,
     "screen_total_cost_usd": 0.20261291,
     "selected_additional_cases": 400,
-    "selected_additional_min_probability": 0.91
+    "selected_additional_min_probability": 0.91,
+    "total_cases": 500
   }
 }
