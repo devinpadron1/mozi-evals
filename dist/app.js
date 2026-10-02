@@ -69,16 +69,18 @@ function renderCases() {
   body.replaceChildren();
   const results = new Map(currentResults().map(result => [result.case_id, result]));
   const baselines = new Map(currentBaselineResults().map(result => [result.case_id, result]));
-  for (const [index, item] of manifest.cases.entries()) {
+  let displayIndex = 0;
+  for (const item of manifest.cases) {
     const baseline = baselines.get(item.id);
     const result = results.get(item.id);
     if (!baseline && !result) continue;
+    displayIndex += 1;
     const row = make('tr');
     const video = make('td', 'video-cell');
     const videoContent = make('div', 'video-content');
     videoContent.append(thumbnailLink(item));
     const description = make('div', 'video-description');
-    const title = make('a', '', `${String(index + 1).padStart(3, '0')} · ${item.name}`);
+    const title = make('a', '', `${displayIndex} · ${item.name}`);
     title.href = item.source.url;
     title.target = '_blank';
     title.rel = 'noopener noreferrer';
