@@ -99,6 +99,11 @@ function renderCases() {
       baselineCell.append(value);
     } else baselineCell.append(make('span', 'queued', baselineProgress?.status === 'running' ? 'Waiting' : '—'));
     const classification = make('td', 'classification-cell');
+    if (baseline && result) {
+      const outcome = baseline.choice === result.choice ? 'comparison-match' : 'comparison-mismatch';
+      baselineCell.classList.add(outcome);
+      classification.classList.add(outcome);
+    }
     if (result) {
       const label = result.choice;
       const value = make('div', 'constraint-result ' + label);
